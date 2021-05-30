@@ -8,3 +8,6 @@ Simple and easy library to Validate data
 
 https://github.com/MajAhd/elx_validation/wiki
 
+## script 
+- iex -S mix
+- recompile()
