@@ -4,6 +4,7 @@ defmodule ElxValidation.En do
     [
       field: 'The #{attribute} is not exist',
       required: 'The #{attribute} field is required.',
+      alpha: 'The #{attribute} may only contain letters.',
       max: [
         numeric: 'The #{attribute} may not be greater than #{validate[:max]}.',
         string: 'The #{attribute} may not be greater than #{validate[:max]} characters.',

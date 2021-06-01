@@ -12,22 +12,27 @@ defmodule ElxValidation do
     data = %{
       name: "Majid",
       surname: "Ahmadi",
-      email: "mjd@yahoo.com"
+      email: "mjd@yahoo.com",
+      accepted: true,
     }
 
     rules = [
       %{
         field: "name",
         as: "first name",
-        validate: ["required", "string", "max:128"]
+        validate: ["required", "alpha"]
       },
       %{
         field: "surname",
-        validate: ["nullable", "string", "max:128"]
+        validate: ["nullable", "alpha"]
       },
       %{
         field: "email",
-        validate: ["required", "string", "min:5", "max:155"]
+        validate: ["required", "string"]
+      },
+      %{
+        field: "accepted",
+        validate: ["required", "accepted"]
       }
     ]
     Enum.map(
