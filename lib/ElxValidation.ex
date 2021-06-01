@@ -2,9 +2,19 @@ defmodule ElxValidation do
   alias ElxValidation.{Validate}
 
   def make() do
+    validation = validations()
+    validation = Enum.filter(validation, & &1)
     %{
-      errors: validations(),
-      failed: true,
+      errors: if Enum.count(validation) > 0 do
+        validation
+      else
+        []
+      end,
+      failed: if Enum.count(validation) > 0 do
+        true
+      else
+        false
+      end,
     }
   end
 
@@ -12,8 +22,8 @@ defmodule ElxValidation do
     data = %{
       name: "Majid",
       surname: "Ahmadi",
-      email: "mjd@yahoo.com",
-      accepted: true,
+      email: "majid@site.com",
+      app_privacy: true,
     }
 
     rules = [
@@ -24,14 +34,15 @@ defmodule ElxValidation do
       },
       %{
         field: "surname",
-        validate: ["nullable", "alpha"]
+        validate: ["required", "alpha"]
       },
       %{
         field: "email",
         validate: ["required", "string"]
       },
       %{
-        field: "accepted",
+        field: "app_privacy",
+        as: "Term of Privacy",
         validate: ["required", "accepted"]
       }
     ]

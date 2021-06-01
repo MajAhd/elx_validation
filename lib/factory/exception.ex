@@ -7,7 +7,16 @@ defmodule ElxValidation.Exception do
     errors = %{}
     Map.put(errors, String.to_atom(field), [])
   end
-
+  def response(errors, rule_field) do
+    Enum.map(
+      errors,
+      fn error ->
+        if error != nil do
+          res = Enum.at(error[String.to_atom(rule_field)], 0)
+        end
+      end
+    )
+  end
   def push_error?(errors, field, type, as \\ nil) when as == nil do
     message = En.message(field)
     errors = Map.put(errors, String.to_atom(field), errors[String.to_atom(field)] ++ [message[String.to_atom(type)]])
