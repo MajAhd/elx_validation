@@ -1,5 +1,5 @@
 defmodule ElxValidation.Exception do
-  alias ElxValidation.En
+  alias ElxValidation.{En}
   def lang(lang_name) do
     lang_name
   end

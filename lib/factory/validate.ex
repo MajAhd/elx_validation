@@ -1,6 +1,6 @@
 defmodule ElxValidation.Validate do
   alias ElxValidation.{BindRules, Exception}
-  def validate_factory(data, rules, lang \\ "en") do
+  def validate_factory(data, rules) do
     #     Explode Rules
     rule_field = rules[:field]
     rule_as = rules[:as]
@@ -14,10 +14,12 @@ defmodule ElxValidation.Validate do
       builder = Enum.filter(builder, & &1)
       if Enum.count(builder) > 0 do
         err = Exception.response(builder, rule_field)
-        res= List.to_tuple([String.to_atom(rule_field), err])
+        List.to_tuple([String.to_atom(rule_field), err])
       end
     else
-      Exception.push_error?(errors, rule_field, "field", rule_as)
+      builder = Exception.push_error?(errors, rule_field, "field", rule_as)
+      err = Exception.response([builder], rule_field)
+      List.to_tuple([String.to_atom(rule_field), err])
     end
   end
 
