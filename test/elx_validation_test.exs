@@ -14,7 +14,6 @@ defmodule ElxValidationTest do
     ]
     assert ElxValidation.make(data, rules) == %{errors: [], failed: false}
   end
-
   test "field failed" do
     data = %{
       first_name: "Majid"
@@ -47,7 +46,6 @@ defmodule ElxValidationTest do
     ]
     assert ElxValidation.make(data, rules) == %{errors: [], failed: false}
   end
-
   test "required failed" do
     data = %{
       name: ""
@@ -93,6 +91,38 @@ defmodule ElxValidationTest do
     assert ElxValidation.make(data, rules) == %{
              errors: [
                name: ["The name may only contain letters."]
+             ],
+             failed: true
+           }
+  end
+
+  #  String test
+  test "string passed" do
+    data = %{
+      user_name: "John_007"
+    }
+    rules = [
+      %{
+        field: "user_name",
+        validate: ["string"]
+      }
+    ]
+    assert ElxValidation.make(data, rules) == %{errors: [], failed: false}
+  end
+  test "sting filed" do
+    data = %{
+      user_name: 123
+    }
+    rules = [
+      %{
+        field: "user_name",
+        as: "user name",
+        validate: ["string"]
+      }
+    ]
+    assert ElxValidation.make(data, rules) == %{
+             errors: [
+               user_name: ["The user name may only string."]
              ],
              failed: true
            }
