@@ -41,7 +41,7 @@ defmodule ElxValidation.Exception do
   end
   @doc """
      push error for each rule on value
-     in case user not defined `as`
+     in case user  defined `as`
   """
   def push_error?(errors, field, type, as) when as != nil do
     message = En.message(as)

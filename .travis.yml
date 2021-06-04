@@ -2,19 +2,13 @@ language: elixir
 
 stages:
   - lint
-  - typecheck
   - test
 
 jobs:
   include:
     - script: mix credo --strict
       name: "Credo"
-      stage: analysis
-      elixir: '1.11'
-      otp_release: '23.0.4'
-    - script: mix dialyzer --halt-exit-status
-      name: "Dialyzer"
-      stage: typecheck
+      stage: lint
       elixir: '1.11'
       otp_release: '23.0.4'
     - elixir: '1.11'
