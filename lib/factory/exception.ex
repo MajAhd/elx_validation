@@ -1,28 +1,48 @@
 defmodule ElxValidation.Exception do
-  alias ElxValidation.{En}
+  alias ElxValidation.En
+  @moduledoc """
+   Control Exception and errors
+  """
+  @doc """
+    set error language
+  """
   def lang(lang_name) do
     lang_name
   end
+
+  @doc """
+  create default error schema for each field
+  """
   def build_exception(field) do
     errors = %{}
     Map.put(errors, String.to_atom(field), [])
   end
+  @doc """
+  create final error response
+  """
   def response(errors, rule_field) do
     Enum.map(
       errors,
       fn error ->
         if error != nil do
-          res = Enum.at(error[String.to_atom(rule_field)], 0)
+          Enum.at(error[String.to_atom(rule_field)], 0)
         end
       end
     )
   end
-  def push_error?(errors, field, type, as \\ nil) when as == nil do
+  @doc """
+     push error for each rule on value
+     in case user not defined `as`
+  """
+  def push_error?(errors, field, type, as) when as == nil do
     message = En.message(field)
     errors = Map.put(errors, String.to_atom(field), errors[String.to_atom(field)] ++ [message[String.to_atom(type)]])
     errors
   end
-
+  @doc """
+     push error for each rule on value
+     in case user not defined `as`
+  """
   def push_error?(errors, field, type, as) when as != nil do
     message = En.message(as)
     errors = Map.put(errors, String.to_atom(field), errors[String.to_atom(field)] ++ [message[String.to_atom(type)]])

@@ -1,4 +1,11 @@
 defmodule ElxValidation.Boolean do
+  @moduledoc """
+     Run Check Boolean data
+  """
+  @doc """
+    Boolean data : true , false , 1, 0
+  """
+
   def is_boolean(target) do
     cond do
       target == true -> true

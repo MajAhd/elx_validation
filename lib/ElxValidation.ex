@@ -1,6 +1,14 @@
 defmodule ElxValidation do
-  alias ElxValidation.{Validate}
+  alias ElxValidation.Validate
+  @moduledoc """
+  Main module to start Validation.
+  - `make` function for start validation
+  """
 
+  @doc """
+  Starts ElxValidation.
+     - ElxValidation.make(data , rules)
+  """
   def make(data, rules) do
 
     validation = validations(data, rules)
@@ -19,8 +27,10 @@ defmodule ElxValidation do
     }
   end
 
+  @doc """
+     send all data to rules to check and validate rules /value
+  """
   def validations(data, rules) do
-
     Enum.map(
       rules,
       fn (rules) ->

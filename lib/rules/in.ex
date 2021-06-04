@@ -1,4 +1,14 @@
 defmodule ElxValidation.In do
-   def is_in() do  end
-   def is_not_in() do  end
+   @moduledoc """
+      Run Check In or Not In Collection
+   """
+   @doc """
+      target in values [a,b ...]
+   """
+
+   def is_in(target , values) do  end
+   @doc """
+      target not in values [a,b ...]
+   """
+   def is_not_in(target , values) do  end
 end

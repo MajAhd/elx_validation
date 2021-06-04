@@ -1,5 +1,10 @@
 defmodule ElxValidation.En do
-  alias ElxValidation.En
+  @moduledoc """
+    Message builder
+  """
+  @doc """
+     call message based on rule name and parameters
+  """
   def message(attribute, validate \\ []) do
     [
       field: "The #{attribute} is not exist",

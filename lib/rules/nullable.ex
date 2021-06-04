@@ -1,5 +1,7 @@
 defmodule ElxValidation.Nullable do
-  def is_null?(), do: true
+  @moduledoc """
+     Run  Value can be null
+  """
   def is_null?(""), do: true
   def is_null?(nil), do: true
   def is_null?(_), do: true

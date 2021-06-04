@@ -1,5 +1,13 @@
 defmodule ElxValidation.Accepted do
-
+  @moduledoc """
+     Run Check Accepted data
+  """
+  @doc """
+     Accepted Data included : yes , on , true ,1
+     - Boolean : true , "true"
+     - integer : 1 , "1"
+     - string : "yes" , "on"
+  """
   def is_accepted(target) do
     cond do
       target == true -> true

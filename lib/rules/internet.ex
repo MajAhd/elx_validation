@@ -1,7 +1,20 @@
 defmodule ElxValidation.Internet do
-  def email() do  end
-  def url() do  end
-  def ip() do  end
-  def ipv4() do  end
-  def ipv6() do  end
+  @moduledoc """
+  Run Check Internet data
+   - internet.INTERNET_VALIDATE(value)
+   - if value was one of the validators return true
+  """
+  @doc """
+  Internet Data (INTERNET_VALIDATE) included :
+  - email
+  - ip
+  - ipv4
+  - ipv6
+  - url
+  """
+  def email(target) do  end
+  def url(target) do  end
+  def ip(target) do  end
+  def ipv4(target) do  end
+  def ipv6(target) do  end
 end

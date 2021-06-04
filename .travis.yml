@@ -1,0 +1,43 @@
+language: elixir
+
+stages:
+  - lint
+  - typecheck
+  - test
+
+jobs:
+  include:
+    - script: mix credo --strict
+      name: "Credo"
+      stage: analysis
+      elixir: '1.10'
+      otp_release: '23.0.4'
+    - script: mix dialyzer --halt-exit-status
+      name: "Dialyzer"
+      stage: typecheck
+      elixir: '1.10'
+      otp_release: '23.0.4'
+    - elixir: '1.6'
+      otp_release: '20.3.8.22'
+      script: mix test
+      stage: test
+    - elixir: '1.7'
+      otp_release: '22.3.4'
+      script: mix test
+      stage: test
+    - elixir: '1.8'
+      otp_release: '22.3.4'
+      script: mix test
+      stage: test
+    - elixir: '1.9'
+      otp_release: '22.3.4'
+      script: mix test
+      stage: test
+    - elixir: '1.10'
+      otp_release: '23.0.4'
+      script: mix test
+      stage: test
+    - elixir: '1.11'
+      otp_release: '23.0.4'
+      script: mix test
+      stage: test
