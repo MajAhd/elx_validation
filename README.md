@@ -13,7 +13,6 @@ https://github.com/MajAhd/elx_validation/wiki
 - recompile()
 
 ## Validations
-- required
-- alpha
-- string
-- accepted
+- [Required](https://github.com/MajAhd/elx_validation/wiki/Required)
+- [Accepted](https://github.com/MajAhd/elx_validation/wiki/Accepted)
+- [Alpha & String](https://github.com/MajAhd/elx_validation/wiki/Alpha-and-String)
