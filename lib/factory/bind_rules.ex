@@ -9,15 +9,14 @@ defmodule ElxValidation.BindRules do
     values : data value for validation - single value
   """
 
-  def build(action, values) do
+  def build(action, value) do
     cond do
-      action == "required" -> Required.is_require?(values)
-      action == "nullable" -> Nullable.is_null?(values)
-      action == "string" -> Alpha.is_string(values)
-      action == "alpha" -> Alpha.is_alpha(values)
-      action == "accepted" -> Accepted.is_accepted(values)
-      action == "boolean" -> Boolean.is_boolean(values)
-
+      action == "required" -> Required.is_require?(value)
+      action == "nullable" -> Nullable.is_null?(value)
+      action == "string" -> Alpha.is_string(value)
+      action == "alpha" -> Alpha.is_alpha(value)
+      action == "accepted" -> Accepted.is_accepted(value)
+      action == "boolean" -> Boolean.is_boolean(value)
       true -> false
     end
   end
@@ -26,10 +25,11 @@ defmodule ElxValidation.BindRules do
     action :  rules types
     values : data value for validation is multi value
   """
-  def build_multiple(action, values) do
+  def build_multiple(action, check_point , value) do
     cond do
-      action == "max" -> Max.is_maximum(Enum.at(values, 0), Enum.at(values, 1))
-      action == "min" -> Min.is_minimum(Enum.at(values, 0), Enum.at(values, 1))
+      action == "start_with" -> Alpha.start_with(value, check_point)
+      action == "max" -> Max.is_maximum(value, check_point)
+      action == "min" -> Min.is_minimum(value, check_point)
       true -> false
     end
   end

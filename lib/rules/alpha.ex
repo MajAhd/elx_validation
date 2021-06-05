@@ -18,10 +18,25 @@ defmodule ElxValidation.Alpha do
     Validate String starter value :
     target : "code1234" check:code -> passed
   """
-  def starts_with(target, check) do  end
+  def start_with(target, start_value) do
+    check_string = is_string(target)
+    if check_string do
+      compare = String.slice(target , 0.. String.length(start_value)-1)
+      compare == start_value
+    else
+      check_string
+    end
+  end
   @doc """
     Validate String end value :
     target : "1234code" check:code -> passed
   """
-  def ends_with(target, check) do  end
+  def end_with(target, end_value) do
+    check_string = is_string(target)
+    if check_string do
+      end_value
+    else
+      check_string
+    end
+  end
 end

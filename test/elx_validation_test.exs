@@ -65,7 +65,7 @@ defmodule ElxValidationTest do
            }
   end
 
-  # Accepted
+  # Accepted Test
   test "accepted passed" do
     data = %{
       agreement1: "on",
@@ -166,7 +166,7 @@ defmodule ElxValidationTest do
     ]
     assert ElxValidation.make(data, rules) == %{errors: [], failed: false}
   end
-  test "sting filed" do
+  test "string filed" do
     data = %{
       user_name: 123
     }
@@ -180,6 +180,38 @@ defmodule ElxValidationTest do
     assert ElxValidation.make(data, rules) == %{
              errors: [
                user_name: ["The user name may only string."]
+             ],
+             failed: true
+           }
+  end
+
+  # Start_with test
+  test "string start with passed" do
+    data = %{
+      start_code: "G123other_string"
+    }
+    rules = [
+      %{
+        field: "start_code",
+        validate: ["start_with:G123"]
+      }
+    ]
+    assert ElxValidation.make(data, rules) == %{errors: [], failed: false}
+  end
+
+  test "string start with failed" do
+    data = %{
+      start_code: "other_string"
+    }
+    rules = [
+      %{
+        field: "start_code",
+        validate: ["start_with:G123"]
+      }
+    ]
+    assert ElxValidation.make(data, rules) == %{
+             errors: [
+               start_code: ["The start_code may only start with G123."]
              ],
              failed: true
            }

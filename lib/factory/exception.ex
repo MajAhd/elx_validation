@@ -34,8 +34,8 @@ defmodule ElxValidation.Exception do
      push error for each rule on value
      in case user not defined `as`
   """
-  def push_error?(errors, field, type, as) when as == nil do
-    message = En.message(field)
+  def push_error?(errors, field, type, value, as \\ nil) when as == nil do
+    message = En.message(field, value)
     errors = Map.put(errors, String.to_atom(field), errors[String.to_atom(field)] ++ [message[String.to_atom(type)]])
     errors
   end
@@ -43,8 +43,8 @@ defmodule ElxValidation.Exception do
      push error for each rule on value
      in case user  defined `as`
   """
-  def push_error?(errors, field, type, as) when as != nil do
-    message = En.message(as)
+  def push_error?(errors, field, type, value, as) when as != nil do
+    message = En.message(as, value)
     errors = Map.put(errors, String.to_atom(field), errors[String.to_atom(field)] ++ [message[String.to_atom(type)]])
     errors
   end

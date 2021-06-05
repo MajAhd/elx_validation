@@ -27,7 +27,7 @@ defmodule ElxValidation.Validate do
         List.to_tuple([String.to_atom(rule_field), err])
       end
     else
-      builder = Exception.push_error?(errors, rule_field, "field", rule_as)
+      builder = Exception.push_error?(errors, rule_field, "field", nil, rule_as)
       err = Exception.response([builder], rule_field)
       List.to_tuple([String.to_atom(rule_field), err])
     end
@@ -46,11 +46,10 @@ defmodule ElxValidation.Validate do
         cond do
           rule_type === 1 ->
             builder = BindRules.build(Enum.at(rule, 0), data_value)
-            exception_builder(builder, errors, rule_field, Enum.at(rule, 0), rule_as)
+            exception_builder(builder, errors, rule_field, Enum.at(rule, 0), data_value, rule_as)
           rule_type === 2 ->
-            target = [Enum.at(rule, 1), data_value]
-            builder = BindRules.build_multiple(Enum.at(rule, 0), target)
-            exception_builder(builder, errors, rule_field, Enum.at(rule, 0), rule_as)
+            builder = BindRules.build_multiple(Enum.at(rule, 0), Enum.at(rule, 1), data_value)
+            exception_builder(builder, errors, rule_field, Enum.at(rule, 0), Enum.at(rule, 1), rule_as)
         end
       end
     )
@@ -58,9 +57,9 @@ defmodule ElxValidation.Validate do
   @doc """
     check if validation builder false push error
   """
-  def exception_builder(builder, errors, rule_field, type, rule_as) do
+  def exception_builder(builder, errors, rule_field, type, data_value, rule_as) do
     if !builder do
-      Exception.push_error?(errors, rule_field, type, rule_as)
+      Exception.push_error?(errors, rule_field, type, data_value, rule_as)
     end
   end
 end
