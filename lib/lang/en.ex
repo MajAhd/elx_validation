@@ -11,6 +11,7 @@ defmodule ElxValidation.En do
       required: "The #{attribute} field is required.",
       accepted: "The #{attribute} must be accepted.",
       alpha: "The #{attribute} may only contain letters.",
+      boolean: "The #{attribute} may only boolean value : true , false , 1 or 0.",
       string: "The #{attribute} may only string.",
       start_with: "The #{attribute} may only start with #{value}.",
       end_with: "The #{attribute} may only end with #{value}.",

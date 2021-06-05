@@ -1,4 +1,6 @@
 # elx_validation
+[![Build Status](https://www.travis-ci.com/MajAhd/elx_validation.svg?branch=main)](https://www.travis-ci.com/MajAhd/elx_validation)
+
 
 Simple and easy library to Validate data
 

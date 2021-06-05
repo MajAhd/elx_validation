@@ -10,8 +10,12 @@ defmodule ElxValidation.Boolean do
     cond do
       target == true -> true
       target == false -> true
+      target == "true" -> true
+      target == "false" -> true
       target == 1 -> true
       target == 0 -> true
+      target == "1" -> true
+      target == "0" -> true
       true -> false
     end
   end
