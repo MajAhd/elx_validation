@@ -16,7 +16,7 @@ defmodule ElxValidation.BindRules do
       action == "string" -> Alpha.is_string(value)
       action == "alpha" -> Alpha.is_alpha(value)
       action == "accepted" -> Accepted.is_accepted(value)
-      action == "boolean" -> Boolean.is_boolean(value)
+      action == "boolean" -> Boolean.validate_boolean(value)
       true -> false
     end
   end
