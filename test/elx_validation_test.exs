@@ -185,7 +185,7 @@ defmodule ElxValidationTest do
            }
   end
 
-  # Start_with test
+  # start_with test
   test "string start with passed" do
     data = %{
       start_code: "G123other_string"
@@ -201,7 +201,7 @@ defmodule ElxValidationTest do
 
   test "string start with failed" do
     data = %{
-      start_code: 1
+      start_code: "string value"
     }
     rules = [
       %{
@@ -212,6 +212,38 @@ defmodule ElxValidationTest do
     assert ElxValidation.make(data, rules) == %{
              errors: [
                start_code: ["The start_code may only start with G123."]
+             ],
+             failed: true
+           }
+  end
+
+  # end_with test
+  test "string end with passed" do
+    data = %{
+      end_code: "other_stringG123"
+    }
+    rules = [
+      %{
+        field: "end_code",
+        validate: ["end_with:G123"]
+      }
+    ]
+    assert ElxValidation.make(data, rules) == %{errors: [], failed: false}
+  end
+
+  test "string end with failed" do
+    data = %{
+      end_code: "string value"
+    }
+    rules = [
+      %{
+        field: "end_code",
+        validate: ["end_with:G123"]
+      }
+    ]
+    assert ElxValidation.make(data, rules) == %{
+             errors: [
+               end_code: ["The end_code may only end with G123."]
              ],
              failed: true
            }

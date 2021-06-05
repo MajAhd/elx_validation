@@ -33,10 +33,11 @@ defmodule ElxValidation.Alpha do
   """
   def end_with(target, end_value) do
     check_string = is_string(target)
-    if check_string do
-      end_value
-    else
-      check_string
+    cond do
+      !is_string(target) -> false
+      String.length(target) < String.length(end_value) -> false
+      String.slice(target , String.length(end_value) * -1..-1) == end_value -> true
+      true -> false
     end
   end
 end

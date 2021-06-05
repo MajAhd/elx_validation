@@ -28,7 +28,7 @@ defmodule ElxValidation.BindRules do
   def build_multiple(action, check_point , value) do
     cond do
       action == "start_with" -> Alpha.start_with(value, check_point)
-      action == "end_with" -> Alpha.start_with(value, check_point)
+      action == "end_with" -> Alpha.end_with(value, check_point)
       action == "max" -> Max.is_maximum(value, check_point)
       action == "min" -> Min.is_minimum(value, check_point)
       true -> false
