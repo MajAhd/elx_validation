@@ -201,7 +201,7 @@ defmodule ElxValidationTest do
 
   test "string start with failed" do
     data = %{
-      start_code: "other_string"
+      start_code: 1
     }
     rules = [
       %{

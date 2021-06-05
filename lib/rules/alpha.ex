@@ -20,11 +20,11 @@ defmodule ElxValidation.Alpha do
   """
   def start_with(target, start_value) do
     check_string = is_string(target)
-    if check_string do
-      compare = String.slice(target , 0.. String.length(start_value)-1)
-      compare == start_value
-    else
-      check_string
+    cond do
+      !is_string(target) -> false
+      String.length(target) < String.length(start_value) -> false
+      String.slice(target, 0..String.length(start_value) - 1) == start_value -> true
+      true -> false
     end
   end
   @doc """
