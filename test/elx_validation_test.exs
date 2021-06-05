@@ -374,4 +374,47 @@ defmodule ElxValidationTest do
              failed: true
            }
   end
+  # test Max
+  test "max passed" do
+    data = %{
+      name: "john",
+      age: 20
+    }
+    rules = [
+      %{
+        field: "name",
+        validate: ["max:10"]
+      },
+      %{
+        field: "age",
+        validate: ["max:40"]
+      }
+    ]
+    assert ElxValidation.make(data, rules) == %{errors: [], failed: false}
+
+  end
+  test "max failed" do
+    data = %{
+      name: "john travolta",
+      age: 54
+    }
+    rules = [
+      %{
+        field: "name",
+        validate: ["max:10"]
+      },
+      %{
+        field: "age",
+        validate: ["max:40"]
+      }
+    ]
+    assert ElxValidation.make(data, rules) == %{
+             errors: [
+               name: ["The name may not be greater than 10."],
+               age: ["The age may not be greater than 40."]
+             ],
+             failed: true
+           }
+  end
+
 end

@@ -19,7 +19,6 @@ defmodule ElxValidation.Alpha do
     target : "code1234" check:code -> passed
   """
   def start_with(target, start_value) do
-    check_string = is_string(target)
     cond do
       !is_string(target) -> false
       String.length(target) < String.length(start_value) -> false
@@ -32,7 +31,6 @@ defmodule ElxValidation.Alpha do
     target : "1234code" check:code -> passed
   """
   def end_with(target, end_value) do
-    check_string = is_string(target)
     cond do
       !is_string(target) -> false
       String.length(target) < String.length(end_value) -> false

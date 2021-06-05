@@ -20,3 +20,4 @@ https://github.com/MajAhd/elx_validation/wiki
 - [Alpha & String](https://github.com/MajAhd/elx_validation/wiki/Alpha-and-String)
 - [Boolean](https://github.com/MajAhd/elx_validation/wiki/Boolean)
 - [Numbers](https://github.com/MajAhd/elx_validation/wiki/Numbers)
+- [Min & Max](https://github.com/MajAhd/elx_validation/wiki/Max-&-Min)
