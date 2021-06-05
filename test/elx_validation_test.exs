@@ -314,4 +314,64 @@ defmodule ElxValidationTest do
            }
   end
 
+  #  Numbers Test
+  test "number passed" do
+    data = %{
+      check_number: 2121
+    }
+    rules = [
+      %{
+        field: "check_number",
+        validate: ["numeric"]
+      }
+    ]
+    assert ElxValidation.make(data, rules) == %{errors: [], failed: false}
+  end
+  test "number failed" do
+    data = %{
+      check_number: "2121"
+    }
+    rules = [
+      %{
+        field: "check_number",
+        validate: ["numeric"]
+      }
+    ]
+    assert ElxValidation.make(data, rules) == %{
+             errors: [
+               check_number: ["The check_number must be a number."]
+             ],
+             failed: true
+           }
+  end
+  #  Digits test
+  test "digits passed" do
+    data = %{
+      age: 12
+    }
+    rules = [
+      %{
+        field: "age",
+        validate: ["digits:2"]
+      }
+    ]
+    assert ElxValidation.make(data, rules) == %{errors: [], failed: false}
+  end
+  test "digits failed" do
+    data = %{
+      age: 9
+    }
+    rules = [
+      %{
+        field: "age",
+        validate: ["digits:2"]
+      }
+    ]
+    assert ElxValidation.make(data, rules) == %{
+             errors: [
+               age: ["The age must be 2 digits."]
+             ],
+             failed: true
+           }
+  end
 end

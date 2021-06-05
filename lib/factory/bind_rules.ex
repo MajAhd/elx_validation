@@ -1,5 +1,5 @@
 defmodule ElxValidation.BindRules do
-  alias ElxValidation.{Accepted, Alpha, Boolean, Max, Min, Nullable, Required}
+  alias ElxValidation.{Accepted, Alpha, Boolean, Max, Min, Nullable, Numbers, Required}
   @moduledoc """
    call rule functions
   """
@@ -17,6 +17,7 @@ defmodule ElxValidation.BindRules do
       action == "alpha" -> Alpha.is_alpha(value)
       action == "accepted" -> Accepted.is_accepted(value)
       action == "boolean" -> Boolean.validate_boolean(value)
+      action == "numeric" -> Numbers.validation_numeric(value)
       true -> false
     end
   end
@@ -29,6 +30,7 @@ defmodule ElxValidation.BindRules do
     cond do
       action == "start_with" -> Alpha.start_with(value, check_point)
       action == "end_with" -> Alpha.end_with(value, check_point)
+      action == "digits" -> Numbers.digits(value, check_point)
       action == "max" -> Max.is_maximum(value, check_point)
       action == "min" -> Min.is_minimum(value, check_point)
       true -> false
