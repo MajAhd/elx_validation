@@ -1,5 +1,5 @@
 defmodule ElxValidation.BindRules do
-  alias ElxValidation.{Accepted, Alpha, Boolean, Max, Min, Nullable, Numbers, Required}
+  alias ElxValidation.{Accepted, Alpha, Boolean, Internet, Max, Min, Nullable, Numbers, Required}
   @moduledoc """
    call rule functions
   """
@@ -18,6 +18,11 @@ defmodule ElxValidation.BindRules do
       action == "accepted" -> Accepted.is_accepted(value)
       action == "boolean" -> Boolean.validate_boolean(value)
       action == "numeric" -> Numbers.validation_numeric(value)
+      action == "email" -> Internet.email(value)
+      action == "url" -> Internet.url(value)
+      action == "ip" -> Internet.ip(value)
+      action == "ipv4" -> Internet.ipv4(value)
+      action == "ipv6" -> Internet.ipv6(value)
       true -> false
     end
   end
@@ -26,7 +31,7 @@ defmodule ElxValidation.BindRules do
     action :  rules types
     values : data value for validation is multi value
   """
-  def build_multiple(action, check_point , value) do
+  def build_multiple(action, check_point, value) do
     cond do
       action == "start_with" -> Alpha.start_with(value, check_point)
       action == "end_with" -> Alpha.end_with(value, check_point)

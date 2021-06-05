@@ -458,4 +458,79 @@ defmodule ElxValidationTest do
              failed: true
            }
   end
+  #  test internet addresses
+  test "internet passed" do
+    data = %{
+      email: "example@gmail.com",
+      url: "http://google.com",
+      ip: "192.168.1.1",
+      ipv4: "192.168.1.1",
+      ipv6: "2001:0db8:85a3:0000:0000:8a2e:0370:7334"
+    }
+    rules = [
+      %{
+        field: "email",
+        validate: ["email"]
+      },
+      %{
+        field: "url",
+        validate: ["url"]
+      },
+      %{
+        field: "ip",
+        validate: ["ip"]
+      },
+      %{
+        field: "ipv4",
+        validate: ["ipv4"]
+      },
+      %{
+        field: "ipv6",
+        validate: ["ipv6"]
+      }
+    ]
+    assert ElxValidation.make(data, rules) == %{errors: [], failed: false}
+  end
+  test "internet failed" do
+    data = %{
+      email: "example.com",
+      url: "http://google",
+      ip: "192.168.1",
+      ipv4: "192.168.1",
+      ipv6: "2001:0db8:85a3:0000:0000:8a2e"
+    }
+    rules = [
+      %{
+        field: "email",
+        validate: ["email"]
+      },
+      %{
+        field: "url",
+        validate: ["url"]
+      },
+      %{
+        field: "ip",
+        validate: ["ip"]
+      },
+      %{
+        field: "ipv4",
+        validate: ["ipv4"]
+      },
+      %{
+        field: "ipv6",
+        validate: ["ipv6"]
+      }
+    ]
+    assert ElxValidation.make(data, rules) == %{
+             errors: [
+               email: ["The email must be a valid email address."],
+               url: ["The url  must be a valid URL address."],
+               ip: ["The ip must be a valid IP address."],
+               ipv4: ["The ipv4 must be a valid IPv4 address."],
+               ipv6: ["The ipv6 must be a valid IPv6 address."]
+             ],
+             failed: true
+           }
+  end
+
 end

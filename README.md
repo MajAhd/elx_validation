@@ -21,3 +21,4 @@ https://github.com/MajAhd/elx_validation/wiki
 - [Boolean](https://github.com/MajAhd/elx_validation/wiki/Boolean)
 - [Numbers](https://github.com/MajAhd/elx_validation/wiki/Numbers)
 - [Min & Max](https://github.com/MajAhd/elx_validation/wiki/Max-&-Min)
+- [Internet](https://github.com/MajAhd/elx_validation/wiki/Internet-Address-:-email-,-url-,-ip)

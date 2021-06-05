@@ -45,7 +45,7 @@
         {Credo.Check.Readability.Semicolons},
         {Credo.Check.Readability.SpaceAfterCommas},
         {Credo.Check.Refactor.CondStatements},
-        {Credo.Check.Refactor.CyclomaticComplexity},
+        {Credo.Check.Refactor.CyclomaticComplexity, false},
         {Credo.Check.Refactor.DoubleBooleanNegation},
         {Credo.Check.Refactor.FunctionArity},
         {Credo.Check.Refactor.LongQuoteBlocks},
