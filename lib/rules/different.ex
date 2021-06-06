@@ -42,7 +42,6 @@ defmodule ElxValidation.Different do
       true -> false
     end
   end
-
   @doc """
     target has to less than value
   """
@@ -63,5 +62,5 @@ defmodule ElxValidation.Different do
       true -> false
     end
   end
-end
 
+end
