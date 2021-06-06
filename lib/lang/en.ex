@@ -27,6 +27,10 @@ defmodule ElxValidation.En do
       in: "The selected #{attribute} is invalid.",
       not_in: "The selected #{attribute} is invalid.",
       uuid: "The #{attribute} must be a valid UUID.",
+      date: "The #{attribute} is not a valid date.",
+      time: "The #{attribute} is not a valid time.",
+      datetime: "The #{attribute} is not a valid datetime.",
+      timezone: "The #{attribute} is not a valid Timezone.",
     ]
   end
 

@@ -21,3 +21,4 @@ Simple and easy library to Validate data
 - [Internet](https://github.com/MajAhd/elx_validation/wiki/Internet-Address-:-email-,-url-,-ip)
 - [In & Not_In](https://github.com/MajAhd/elx_validation/wiki/in-&-not-in)
 - [UUID](https://github.com/MajAhd/elx_validation/wiki/uuid)
+- [Date&Time](https://github.com/MajAhd/elx_validation/wiki/Date-and-Time)

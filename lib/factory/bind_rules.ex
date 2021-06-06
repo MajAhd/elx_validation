@@ -1,6 +1,6 @@
 defmodule ElxValidation.BindRules do
   alias ElxValidation.{Accepted, Alpha, Boolean, In, Internet, Max, Min, Nullable, Numbers}
-  alias ElxValidation.{Required, Uuid}
+  alias ElxValidation.{DateTime, Required, Uuid}
   @moduledoc """
    call rule functions
   """
@@ -25,6 +25,10 @@ defmodule ElxValidation.BindRules do
       action == "ipv4" -> Internet.ipv4(value)
       action == "ipv6" -> Internet.ipv6(value)
       action == "uuid" -> Uuid.is_uuid(value)
+      action == "date" -> DateTime.is_date(value)
+      action == "time" -> DateTime.is_time(value)
+      action == "datetime" -> DateTime.is_date_time(value)
+      action == "timezone" -> DateTime.is_timezone(value)
       true -> false
     end
   end

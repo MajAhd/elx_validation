@@ -600,4 +600,67 @@ defmodule ElxValidationTest do
              failed: true
            }
   end
+  #  test Date Time
+  test "date time passed" do
+    data = %{
+      birthdate: "1990-04-17",
+      start_time: "13:30",
+      expired: "2020-06-28 12:20",
+      my_zone: "+04:30"
+    }
+    rules = [
+      %{
+        field: "birthdate",
+        validate: ["date"]
+      },
+      %{
+        field: "start_time",
+        validate: ["time"]
+      },
+      %{
+        field: "expired",
+        validate: ["datetime"]
+      },
+      %{
+        field: "my_zone",
+        validate: ["timezone"]
+      },
+    ]
+    assert ElxValidation.make(data, rules) == %{errors: [], failed: false}
+  end
+  test "date time failed" do
+    data = %{
+      birthdate: "199004-17",
+      start_time: "1330",
+      expired: "2020-06-2812:20",
+      my_zone: "04:30"
+    }
+    rules = [
+      %{
+        field: "birthdate",
+        validate: ["date"]
+      },
+      %{
+        field: "start_time",
+        validate: ["time"]
+      },
+      %{
+        field: "expired",
+        validate: ["datetime"]
+      },
+      %{
+        field: "my_zone",
+        validate: ["timezone"]
+      },
+    ]
+    assert ElxValidation.make(data, rules) == %{
+             errors: [
+               birthdate: ["The birthdate is not a valid date."],
+               start_time: ["The start_time is not a valid time."],
+               expired: ["The expired is not a valid datetime."],
+               my_zone: ["The my_zone is not a valid Timezone."]
+             ],
+             failed: true
+           }
+  end
 end
