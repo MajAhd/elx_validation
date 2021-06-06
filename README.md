@@ -22,3 +22,4 @@ https://github.com/MajAhd/elx_validation/wiki
 - [Numbers](https://github.com/MajAhd/elx_validation/wiki/Numbers)
 - [Min & Max](https://github.com/MajAhd/elx_validation/wiki/Max-&-Min)
 - [Internet](https://github.com/MajAhd/elx_validation/wiki/Internet-Address-:-email-,-url-,-ip)
+- [In & Not_In](https://github.com/MajAhd/elx_validation/wiki/in-&-not-in)

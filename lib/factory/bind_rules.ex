@@ -1,5 +1,5 @@
 defmodule ElxValidation.BindRules do
-  alias ElxValidation.{Accepted, Alpha, Boolean, Internet, Max, Min, Nullable, Numbers, Required}
+  alias ElxValidation.{Accepted, Alpha, Boolean, In, Internet, Max, Min, Nullable, Numbers, Required}
   @moduledoc """
    call rule functions
   """
@@ -38,6 +38,8 @@ defmodule ElxValidation.BindRules do
       action == "digits" -> Numbers.digits(value, check_point)
       action == "max" -> Max.is_maximum(value, check_point)
       action == "min" -> Min.is_minimum(value, check_point)
+      action == "in" -> In.is_in(value, check_point)
+      action == "not_in" -> In.is_not_in(value, check_point)
       true -> false
     end
   end

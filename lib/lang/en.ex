@@ -24,6 +24,8 @@ defmodule ElxValidation.En do
       ip: "The #{attribute} must be a valid IP address.",
       ipv4: "The #{attribute} must be a valid IPv4 address.",
       ipv6: "The #{attribute} must be a valid IPv6 address.",
+      in: "The selected #{attribute} is invalid.",
+      not_in: "The selected #{attribute} is invalid.",
     ]
   end
 

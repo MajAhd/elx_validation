@@ -533,4 +533,39 @@ defmodule ElxValidationTest do
            }
   end
 
+  # test in / not in
+  test "collection passed" do
+    data = %{
+      country: "italy",
+      grade: "a",
+    }
+    rules = [
+      %{
+        field: "country",
+        validate: ["in:iran,italy,usa"]
+      },
+      %{
+        field: "grade",
+        validate: ["not_in:c,d,e", "in:a,b"]
+      }
+    ]
+    assert ElxValidation.make(data, rules) == %{errors: [], failed: false}
+  end
+  test "collection failed" do
+    data = %{
+      grade: "u",
+    }
+    rules = [
+      %{
+        field: "grade",
+        validate: ["not_in:c,d,e", "in:a,b"]
+      }
+    ]
+    assert ElxValidation.make(data, rules) == %{
+             errors: [
+               grade: ["The selected grade is invalid."]
+             ],
+             failed: true
+           }
+  end
 end
