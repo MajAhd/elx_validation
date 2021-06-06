@@ -7,7 +7,6 @@ defmodule ElxValidation.DateTime do
   """
   def is_date(target) do
     Regex.match?(~r/([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))/, target)
-    #    d = Date.from_iso8601!(target)
   end
 
   @doc """
@@ -39,31 +38,63 @@ defmodule ElxValidation.DateTime do
      check target and value is date and equal
   """
   def date_equals(target, value) do
-
+    if is_date(target) and is_date(value) do
+      t = Date.from_iso8601!(target)
+      v = Date.from_iso8601!(value)
+      Date.diff(v, t) == 0
+    else
+      false
+    end
   end
   @doc """
      check target and value is date and target after value
   """
   def is_after(target, value) do
-
+    if is_date(target) and is_date(value) do
+      t = Date.from_iso8601!(target)
+      v = Date.from_iso8601!(value)
+      Date.diff(t, v) > 0
+    else
+      false
+    end
   end
 
   @doc """
      check target and value is date and target after or equal value
   """
   def is_after_or_equal(target, value) do
-
+    if is_date(target) and is_date(value) do
+      t = Date.from_iso8601!(target)
+      v = Date.from_iso8601!(value)
+      Date.diff(t, v) >= 0
+    else
+      false
+    end
   end
 
   @doc """
      check target and value is date and target before value
   """
   def is_before(target, value) do
-
+    if is_date(target) and is_date(value) do
+      t = Date.from_iso8601!(target)
+      v = Date.from_iso8601!(value)
+      Date.diff(t, v) < 0
+    else
+      false
+    end
   end
 
   @doc """
      check target and value is date and target before or equal value
   """
-  def is_before_or_equal(target, value) do  end
+  def is_before_or_equal(target, value) do
+    if is_date(target) and is_date(value) do
+      t = Date.from_iso8601!(target)
+      v = Date.from_iso8601!(value)
+      Date.diff(t, v) <= 0
+    else
+      false
+    end
+  end
 end

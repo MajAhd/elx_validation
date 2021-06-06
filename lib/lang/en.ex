@@ -31,6 +31,12 @@ defmodule ElxValidation.En do
       time: "The #{attribute} is not a valid time.",
       datetime: "The #{attribute} is not a valid datetime.",
       timezone: "The #{attribute} is not a valid Timezone.",
+      date_equals: "The #{attribute} must be a date equal to #{value}.",
+      date_equals: "The #{attribute} must be a date Equal to #{value}.",
+      after: "The #{attribute} must be a date after to #{value}.",
+      after_or_equal: "The #{attribute} must be a date after or equal to #{value}.",
+      before: "The #{attribute} must be a date before to #{value}.",
+      before_or_equal: "The #{attribute} must be a date before or equal to #{value}.",
     ]
   end
 

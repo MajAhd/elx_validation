@@ -606,7 +606,7 @@ defmodule ElxValidationTest do
       birthdate: "1990-04-17",
       start_time: "13:30",
       expired: "2020-06-28 12:20",
-      my_zone: "+04:30"
+      my_zone: "+04:30",
     }
     rules = [
       %{
@@ -662,5 +662,80 @@ defmodule ElxValidationTest do
              ],
              failed: true
            }
+  end
+
+  test "date diff passed" do
+    data = %{
+      eq_bd: "1990-04-17",
+      after_bd: "1990-04-20",
+      after_equal_bd: "1990-04-18",
+      before_bd: "1990-04-16",
+      before_equal_bd: "1990-04-17",
+    }
+    rules = [
+      %{
+        field: "eq_bd",
+        validate: ["date_equals:1990-04-17"]
+      },
+      %{
+        field: "after_bd",
+        validate: ["after:1990-04-17"]
+      },
+      %{
+        field: "after_equal_bd",
+        validate: ["after_or_equal:1990-04-17"]
+      },
+      %{
+        field: "before_bd",
+        validate: ["before:1990-04-17"]
+      },
+      %{
+        field: "before_equal_bd",
+        validate: ["before_or_equal:1990-04-17"]
+      }
+    ]
+    assert ElxValidation.make(data, rules) == %{errors: [], failed: false}
+  end
+  test "date diff failed" do
+    data = %{
+      eq_bd: "1990-04-14",
+      after_bd: "1990-04-16",
+      after_equal_bd: "1990-04-15",
+      before_bd: "1990-04-17",
+      before_equal_bd: "1990-04-18",
+    }
+    rules = [
+      %{
+        field: "eq_bd",
+        validate: ["date_equals:1990-04-17"]
+      },
+      %{
+        field: "after_bd",
+        validate: ["after:1990-04-17"]
+      },
+      %{
+        field: "after_equal_bd",
+        validate: ["after_or_equal:1990-04-17"]
+      },
+      %{
+        field: "before_bd",
+        validate: ["before:1990-04-17"]
+      },
+      %{
+        field: "before_equal_bd",
+        validate: ["before_or_equal:1990-04-17"]
+      }
+    ]
+    assert ElxValidation.make(data, rules) == %{
+             errors: [
+               eq_bd: ["The eq_bd must be a date equal to 1990-04-17."],
+               after_bd: ["The after_bd must be a date after to 1990-04-17."],
+               after_equal_bd: ["The after_equal_bd must be a date after or equal to 1990-04-17."],
+               before_bd: ["The before_bd must be a date before to 1990-04-17."],
+               before_equal_bd: ["The before_equal_bd must be a date before or equal to 1990-04-17."]
+             ],
+             failed: true
+           }
+
   end
 end

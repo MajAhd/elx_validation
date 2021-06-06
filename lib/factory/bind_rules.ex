@@ -46,6 +46,11 @@ defmodule ElxValidation.BindRules do
       action == "min" -> Min.is_minimum(value, check_point)
       action == "in" -> In.is_in(value, check_point)
       action == "not_in" -> In.is_not_in(value, check_point)
+      action == "date_equals" -> DateTime.date_equals(value, check_point)
+      action == "after" -> DateTime.is_after(value, check_point)
+      action == "after_or_equal" -> DateTime.is_after_or_equal(value, check_point)
+      action == "before" -> DateTime.is_before(value, check_point)
+      action == "before_or_equal" -> DateTime.is_before_or_equal(value, check_point)
       true -> false
     end
   end
