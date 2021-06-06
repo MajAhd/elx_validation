@@ -6,15 +6,12 @@ Simple and easy library to Validate data
 
 ⚠️ Library under develop
 
-### read wiki
-
-https://github.com/MajAhd/elx_validation/wiki
-
 ## script 
 - iex -S mix
 - recompile()
 
 ## Validations
+- [Start Validation](https://github.com/MajAhd/elx_validation/wiki)
 - [Required](https://github.com/MajAhd/elx_validation/wiki/Required)
 - [Accepted](https://github.com/MajAhd/elx_validation/wiki/Accepted)
 - [Alpha & String](https://github.com/MajAhd/elx_validation/wiki/Alpha-and-String)
@@ -23,3 +20,4 @@ https://github.com/MajAhd/elx_validation/wiki
 - [Min & Max](https://github.com/MajAhd/elx_validation/wiki/Max-&-Min)
 - [Internet](https://github.com/MajAhd/elx_validation/wiki/Internet-Address-:-email-,-url-,-ip)
 - [In & Not_In](https://github.com/MajAhd/elx_validation/wiki/in-&-not-in)
+- [UUID](https://github.com/MajAhd/elx_validation/wiki/uuid)

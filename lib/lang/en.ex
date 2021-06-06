@@ -26,6 +26,7 @@ defmodule ElxValidation.En do
       ipv6: "The #{attribute} must be a valid IPv6 address.",
       in: "The selected #{attribute} is invalid.",
       not_in: "The selected #{attribute} is invalid.",
+      uuid: "The #{attribute} must be a valid UUID.",
     ]
   end
 
