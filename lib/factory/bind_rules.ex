@@ -1,6 +1,6 @@
 defmodule ElxValidation.BindRules do
   alias ElxValidation.{Accepted, Alpha, Boolean, In, Internet, Max, Min, Nullable, Numbers}
-  alias ElxValidation.{DateTime, Required, Uuid}
+  alias ElxValidation.{DateTime , Different , Required, Uuid}
   @moduledoc """
    call rule functions
   """
@@ -51,6 +51,12 @@ defmodule ElxValidation.BindRules do
       action == "after_or_equal" -> DateTime.is_after_or_equal(value, check_point)
       action == "before" -> DateTime.is_before(value, check_point)
       action == "before_or_equal" -> DateTime.is_before_or_equal(value, check_point)
+      action == "different" -> Different.is_different(value, check_point)
+      action == "equal" -> Different.equal(value, check_point)
+      action == "gt" -> Different.gt(value, check_point)
+      action == "gte" -> Different.gte(value, check_point)
+      action == "lt" -> Different.lt(value, check_point)
+      action == "lte" -> Different.lte(value, check_point)
       true -> false
     end
   end

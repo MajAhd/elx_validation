@@ -37,6 +37,12 @@ defmodule ElxValidation.En do
       after_or_equal: "The #{attribute} must be a date after or equal to #{value}.",
       before: "The #{attribute} must be a date before to #{value}.",
       before_or_equal: "The #{attribute} must be a date before or equal to #{value}.",
+      different: "The #{attribute} must be different to #{value}.",
+      equal: "The #{attribute} must be equal to #{value}.",
+      gt: "The #{attribute} must be greater than #{value}.",
+      gte: "The #{attribute} must be greater or equal to #{value}.",
+      lt: "The #{attribute} must be less than #{value}.",
+      lte: "The #{attribute} must be less or equal to #{value}.",
     ]
   end
 
