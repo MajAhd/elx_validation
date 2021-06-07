@@ -19,8 +19,7 @@ defmodule ElxValidation.Validate do
     errors = Exception.build_exception(rule_field)
     is_data_exist = Map.has_key?(data, String.to_atom(rule_field))
     if is_data_exist do
-      data_value = Map.fetch!(data, String.to_atom(rule_field))
-      builder = validate_builder(validates, data_value, rule_field, rule_as, errors)
+      builder = validate_builder(validates, data, rule_field, rule_as, errors)
       builder = Enum.filter(builder, & &1)
       if Enum.count(builder) > 0 do
         err = Exception.response(builder, rule_field)
@@ -37,18 +36,18 @@ defmodule ElxValidation.Validate do
     response to validation -> passes or failed
     if failed create errors
   """
-  def validate_builder(validates, data_value, rule_field, rule_as, errors) do
+  def validate_builder(validates, data, rule_field, rule_as, errors) do
+    data_value = Map.fetch!(data, String.to_atom(rule_field))
     Enum.map(
       validates,
       fn validate ->
         rule = String.split(validate, ":")
         rule_type = Enum.count(rule)
+        builder = BindRules.build(validate, data_value, rule_field , data)
         cond do
           rule_type === 1 ->
-            builder = BindRules.build(Enum.at(rule, 0), data_value)
             exception_builder(builder, errors, rule_field, Enum.at(rule, 0), data_value, rule_as)
           rule_type === 2 ->
-            builder = BindRules.build_multiple(Enum.at(rule, 0), Enum.at(rule, 1), data_value)
             exception_builder(builder, errors, rule_field, Enum.at(rule, 0), Enum.at(rule, 1), rule_as)
         end
       end

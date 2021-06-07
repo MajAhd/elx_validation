@@ -10,5 +10,7 @@ defmodule ElxValidation.Confirmation do
         fields[:password_confirmation]
     and should equal
   """
-  def is_confirmed(target, fields) do  end
+  def is_confirmed(target, value) do
+     target == value
+  end
 end

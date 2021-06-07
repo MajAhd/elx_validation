@@ -25,3 +25,5 @@ Simple and easy library to Validate data
 - [UUID](https://github.com/MajAhd/elx_validation/wiki/uuid)
 - [Date&Time](https://github.com/MajAhd/elx_validation/wiki/Date-and-Time)
 - [Different](https://github.com/MajAhd/elx_validation/wiki/Greater-that-&-Less-Than-&-equal-&-Different-Field)
+- [Confirmation](https://github.com/MajAhd/elx_validation/wiki/Confirmation)
+- [Nullable](https://github.com/MajAhd/elx_validation/wiki/Nullable)

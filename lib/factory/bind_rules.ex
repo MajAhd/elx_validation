@@ -1,6 +1,6 @@
 defmodule ElxValidation.BindRules do
-  alias ElxValidation.{Accepted, Alpha, Boolean, In, Internet, Max, Min, Nullable, Numbers}
-  alias ElxValidation.{DateTime , Different , Required, Uuid}
+  alias ElxValidation.{Accepted, Alpha, Boolean, Field, In, Internet, Max, Min, Nullable, Numbers}
+  alias ElxValidation.{Confirmation, DateTime, Different, Required, Uuid}
   @moduledoc """
    call rule functions
   """
@@ -9,9 +9,11 @@ defmodule ElxValidation.BindRules do
     action :  rules types
     values : data value for validation - single value
   """
-
-  def build(action, value) do
+  def build(validate, value, rule_field, all_data) do
+    rule = String.split(validate, ":")
+    action = Enum.at(rule, 0)
     cond do
+      #      Rules
       action == "required" -> Required.is_require?(value)
       action == "nullable" -> Nullable.is_null?(value)
       action == "string" -> Alpha.is_string(value)
@@ -29,34 +31,34 @@ defmodule ElxValidation.BindRules do
       action == "time" -> DateTime.is_time(value)
       action == "datetime" -> DateTime.is_date_time(value)
       action == "timezone" -> DateTime.is_timezone(value)
-      true -> false
-    end
-  end
-  @doc """
-  build rules by rule name
-    action :  rules types
-    values : data value for validation is multi value
-  """
-  def build_multiple(action, check_point, value) do
-    cond do
-      action == "start_with" -> Alpha.start_with(value, check_point)
-      action == "end_with" -> Alpha.end_with(value, check_point)
-      action == "digits" -> Numbers.digits(value, check_point)
-      action == "max" -> Max.is_maximum(value, check_point)
-      action == "min" -> Min.is_minimum(value, check_point)
-      action == "in" -> In.is_in(value, check_point)
-      action == "not_in" -> In.is_not_in(value, check_point)
-      action == "date_equals" -> DateTime.date_equals(value, check_point)
-      action == "after" -> DateTime.is_after(value, check_point)
-      action == "after_or_equal" -> DateTime.is_after_or_equal(value, check_point)
-      action == "before" -> DateTime.is_before(value, check_point)
-      action == "before_or_equal" -> DateTime.is_before_or_equal(value, check_point)
-      action == "different" -> Different.is_different(value, check_point)
-      action == "equal" -> Different.equal(value, check_point)
-      action == "gt" -> Different.gt(value, check_point)
-      action == "gte" -> Different.gte(value, check_point)
-      action == "lt" -> Different.lt(value, check_point)
-      action == "lte" -> Different.lte(value, check_point)
+      #      Validates
+      action == "start_with" -> Alpha.start_with(value, Enum.at(rule, 1))
+      action == "end_with" -> Alpha.end_with(value, Enum.at(rule, 1))
+      action == "digits" -> Numbers.digits(value, Enum.at(rule, 1))
+      action == "max" -> Max.is_maximum(value, Enum.at(rule, 1))
+      action == "min" -> Min.is_minimum(value, Enum.at(rule, 1))
+      action == "in" -> In.is_in(value, Enum.at(rule, 1))
+      action == "not_in" -> In.is_not_in(value, Enum.at(rule, 1))
+      action == "date_equals" -> DateTime.date_equals(value, Enum.at(rule, 1))
+      action == "after" -> DateTime.is_after(value, Enum.at(rule, 1))
+      action == "after_or_equal" -> DateTime.is_after_or_equal(value, Enum.at(rule, 1))
+      action == "before" -> DateTime.is_before(value, Enum.at(rule, 1))
+      action == "before_or_equal" -> DateTime.is_before_or_equal(value, Enum.at(rule, 1))
+      action == "different" -> Different.is_different(value, Enum.at(rule, 1))
+      action == "equal" -> Different.equal(value, Enum.at(rule, 1))
+      action == "gt" -> Different.gt(value, Enum.at(rule, 1))
+      action == "gte" -> Different.gte(value, Enum.at(rule, 1))
+      action == "lt" -> Different.lt(value, Enum.at(rule, 1))
+      action == "lte" -> Different.lte(value, Enum.at(rule, 1))
+      #      Fields
+      action == "confirmed" ->
+        confirmed_name = "#{rule_field}_confirmation"
+        if Field.field_exist?(confirmed_name, all_data) do
+          check_point = Map.fetch!(all_data, String.to_atom(confirmed_name))
+          Confirmation.is_confirmed(value, check_point)
+        else
+          false
+        end
       true -> false
     end
   end
