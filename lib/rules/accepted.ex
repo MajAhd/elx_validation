@@ -18,5 +18,8 @@ defmodule ElxValidation.Accepted do
       target == 1 -> true
       true -> false
     end
+  rescue
+    _ ->
+      false
   end
 end
