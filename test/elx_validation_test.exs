@@ -198,7 +198,6 @@ defmodule ElxValidationTest do
     ]
     assert ElxValidation.make(data, rules) == %{errors: [], failed: false}
   end
-
   test "string start with failed" do
     data = %{
       start_code: "string value"
@@ -907,7 +906,6 @@ defmodule ElxValidationTest do
     ]
     assert ElxValidation.make(data, rules) == %{errors: [], failed: false}
   end
-
   test "confirmed failed" do
     data = %{
       password: "123456",
@@ -927,4 +925,22 @@ defmodule ElxValidationTest do
              failed: true
            }
   end
+  #  Test Nullable
+  test "nullable passed" do
+    data = %{
+      optional_name: "Majid",
+    }
+    rules = [
+      %{
+        field: "optional_name",
+
+        validate: ["nullable", "alpha", "min:3"]
+      },
+    ]
+    assert ElxValidation.make(data, rules) == %{
+             errors: [],
+             failed: false
+           }
+  end
+
 end

@@ -38,21 +38,37 @@ defmodule ElxValidation.Validate do
   """
   def validate_builder(validates, data, rule_field, rule_as, errors) do
     data_value = Map.fetch!(data, String.to_atom(rule_field))
-    Enum.map(
-      validates,
-      fn validate ->
-        rule = String.split(validate, ":")
-        rule_type = Enum.count(rule)
-        builder = BindRules.build(validate, data_value, rule_field , data)
-        cond do
-          rule_type === 1 ->
-            exception_builder(builder, errors, rule_field, Enum.at(rule, 0), data_value, rule_as)
-          rule_type === 2 ->
-            exception_builder(builder, errors, rule_field, Enum.at(rule, 0), Enum.at(rule, 1), rule_as)
+    has_nullable = Enum.find(validates, fn x -> x == "nullable" end)
+
+    initial_validate = fn ->
+      Enum.map(
+        validates,
+        fn validate ->
+          rule = String.split(validate, ":")
+          rule_type = Enum.count(rule)
+          builder = BindRules.build(validate, data_value, rule_field, data)
+          cond do
+            rule_type === 1 ->
+              exception_builder(builder, errors, rule_field, Enum.at(rule, 0), data_value, rule_as)
+            rule_type === 2 ->
+              exception_builder(builder, errors, rule_field, Enum.at(rule, 0), Enum.at(rule, 1), rule_as)
+          end
         end
-      end
-    )
+      )
+    end
+
+    cond do
+      has_nullable != nil ->
+        if data_value == nil or data_value == "" do
+          [nil]
+        else
+          initial_validate.()
+        end
+      true -> initial_validate.()
+    end
+
   end
+
   @doc """
     check if validation builder false push error
   """

@@ -44,6 +44,7 @@ defmodule ElxValidation.En do
       lt: "The #{attribute} must be less than #{value}.",
       lte: "The #{attribute} must be less or equal to #{value}.",
       confirmed: "The #{attribute} confirmation does not match.",
+      nullable: "The #{attribute} can be a null.",
     ]
   end
 

@@ -59,6 +59,7 @@ defmodule ElxValidation.BindRules do
         else
           false
         end
+      action == "nullable" -> Nullable.is_null?(value)
       true -> false
     end
   end
