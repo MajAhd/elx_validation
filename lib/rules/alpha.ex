@@ -7,24 +7,38 @@ defmodule ElxValidation.Alpha do
   """
   def is_string(target) do
     is_bitstring(target)
+  rescue
+    _ ->
+      false
+
   end
   @doc """
     Validate Only Alpha data [a to z / A to Z]
   """
   def is_alpha(target) do
+
     Regex.match?(~r/^[A-Za-z]+$/, String.replace(target, " ", ""))
+  rescue
+    _ ->
+      false
+
   end
   @doc """
     Validate String starter value :
     target : "code1234" check:code -> passed
   """
   def start_with(target, start_value) do
+
     cond do
       !is_string(target) -> false
       String.length(target) < String.length(start_value) -> false
       String.slice(target, 0..String.length(start_value) - 1) == start_value -> true
       true -> false
     end
+  rescue
+    _ ->
+      false
+
   end
   @doc """
     Validate String end value :
@@ -34,8 +48,11 @@ defmodule ElxValidation.Alpha do
     cond do
       !is_string(target) -> false
       String.length(target) < String.length(end_value) -> false
-      String.slice(target , String.length(end_value) * -1..-1) == end_value -> true
+      String.slice(target, String.length(end_value) * -1..-1) == end_value -> true
       true -> false
     end
+  rescue
+    _ ->
+      false
   end
 end
