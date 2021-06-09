@@ -39,7 +39,7 @@ defmodule ElxValidation.Validate do
   def validate_builder(validates, data, rule_field, rule_as, errors) do
     data_value = Map.fetch!(data, String.to_atom(rule_field))
     has_nullable = Enum.find(validates, fn x -> x == "nullable" end)
-
+    # this function initial Validation
     initial_validate = fn ->
       Enum.map(
         validates,
@@ -56,7 +56,7 @@ defmodule ElxValidation.Validate do
         end
       )
     end
-
+    # Check the pre conditions of validation
     cond do
       has_nullable != nil ->
         if data_value == nil or data_value == "" do
@@ -64,9 +64,8 @@ defmodule ElxValidation.Validate do
         else
           initial_validate.()
         end
-      true -> initial_validate.()
+      has_nullable == nil -> initial_validate.()
     end
-
   end
 
   @doc """
