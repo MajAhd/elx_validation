@@ -65,40 +65,6 @@ defmodule ElxValidationTest do
            }
   end
 
-
-
-  #  test uuid
-  test "uuid passed" do
-    data = %{
-      uuid_1: "56b2724e-9074-4dc3-9803-4bb13c92ee0e",
-    }
-    rules = [
-      %{
-        field: "uuid_1",
-        validate: ["uuid"]
-      },
-
-    ]
-    assert ElxValidation.make(data, rules) == %{errors: [], failed: false}
-  end
-  test "uuid failed" do
-    data = %{
-      uuid_1: "56b2-9074-4dc3-9803-4bb13c9",
-    }
-    rules = [
-      %{
-        field: "uuid_1",
-        validate: ["uuid"]
-      },
-
-    ]
-    assert ElxValidation.make(data, rules) == %{
-             errors: [
-               uuid_1: ["The uuid_1 must be a valid UUID."]
-             ],
-             failed: true
-           }
-  end
   #  test Date Time
   test "date time passed" do
     data = %{

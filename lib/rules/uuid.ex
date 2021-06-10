@@ -7,6 +7,9 @@ defmodule ElxValidation.Uuid do
   """
   def is_uuid(target) do
     uuid_rfc_4122(target)
+  rescue
+    _ ->
+      false
   end
   @doc """
     RFC 4122
@@ -18,5 +21,8 @@ defmodule ElxValidation.Uuid do
   """
   def uuid_rfc_4122(target) do
     Regex.match?(~r/[0-9a-f]{8}\b-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-\b[0-9a-f]{12}/, target)
+  rescue
+    _ ->
+      false
   end
 end
