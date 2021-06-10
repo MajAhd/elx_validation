@@ -6,37 +6,32 @@ Simple and easy library to Validate data
 
 ⚠️ Library under develop
 
-## script
 
-- iex -S mix
-- recompile()
-## Sample Validation
-
+## Usage
+***
+```
 data = %{
-
     name: "Majid ahd",
-    
     email: "example@email.com"
-
 }
 
-rules = [%{
-
+rules = [
+%{
     field: "name",
     as: "first name",
     validate: ["required", "min:4", "max:10"]
-
 },
 %{
-
     field: "email",
     validate: ["required", "email"]
-
 }]
+```
+
+## Documentation
 
 
-## Validations
-
+## Wiki
+***
 - [Start Validation](https://github.com/MajAhd/elx_validation/wiki)
 - [Required](https://github.com/MajAhd/elx_validation/wiki/Required)
 - [Accepted](https://github.com/MajAhd/elx_validation/wiki/Accepted)
@@ -51,3 +46,9 @@ rules = [%{
 - [Different](https://github.com/MajAhd/elx_validation/wiki/Greater-that-&-Less-Than-&-equal-&-Different-Field)
 - [Confirmation](https://github.com/MajAhd/elx_validation/wiki/Confirmation)
 - [Nullable](https://github.com/MajAhd/elx_validation/wiki/Nullable)
+
+## Author
+***
+ Majid Ahmaditabar
+
+ElxValidation is released under the [MIT License](https://github.com/MajAhd/elx_validation/blob/main/LICENSE).

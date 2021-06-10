@@ -6,8 +6,11 @@ defmodule ElxValidation.MixProject do
       app: :elx_validation,
       version: "0.1.0",
       elixir: "~> 1.11",
+      build_embedded: Mix.env == :prod,
       start_permanent: Mix.env() == :prod,
-      deps: deps()
+      description: description(),
+      package: package(),
+      deps: deps(),
     ]
   end
 
@@ -22,6 +25,23 @@ defmodule ElxValidation.MixProject do
   defp deps do
     [
       {:credo, "~> 1.4", only: [:dev, :test], runtime: false}
+    ]
+  end
+
+  defp description do
+    """
+    Library for Validation data.
+    """
+  end
+
+  defp package do
+    [
+      files: ["lib", "mix.exs", "README*", "LICENSE*"],
+      maintainers: ["Majid Ahmaditabar"],
+      licenses: ["MIT"],
+      links: %{
+        "GitHub" => "https://github.com/MajAhd/elx_validation"
+      }
     ]
   end
 end
