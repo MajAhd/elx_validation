@@ -15,5 +15,8 @@ defmodule ElxValidation.Boolean do
       target == 0 || target == "0" -> true
       true -> false
     end
+  rescue
+    _ ->
+      false
   end
 end
