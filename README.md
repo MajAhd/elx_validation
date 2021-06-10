@@ -10,6 +10,30 @@ Simple and easy library to Validate data
 
 - iex -S mix
 - recompile()
+## Sample Validation
+
+data = %{
+
+    name: "Majid ahd",
+    
+    email: "example@email.com"
+
+}
+
+rules = [%{
+
+    field: "name",
+    as: "first name",
+    validate: ["required", "min:4", "max:10"]
+
+},
+%{
+
+    field: "email",
+    validate: ["required", "email"]
+
+}]
+
 
 ## Validations
 
