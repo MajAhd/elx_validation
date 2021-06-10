@@ -1,7 +1,9 @@
 defmodule ElxValidation.Exception do
   alias ElxValidation.En
   @moduledoc """
-   Control Exception and errors
+   Control Exceptions and errors
+  - not use inside validator
+  - called automatically by validator
   """
   @doc """
     set error language

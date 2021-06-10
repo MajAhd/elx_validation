@@ -24,6 +24,7 @@ defmodule ElxValidation.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
+      {:ex_doc, "~> 0.24", only: :dev, runtime: false},
       {:credo, "~> 1.4", only: [:dev, :test], runtime: false}
     ]
   end
@@ -36,11 +37,12 @@ defmodule ElxValidation.MixProject do
 
   defp package do
     [
-      files: ["lib", "mix.exs", "README*", "LICENSE*"],
+      files: ["lib", "mix.exs", "README*", "LICENSE*" ,"CHANGELOG*"],
       maintainers: ["Majid Ahmaditabar"],
       licenses: ["MIT"],
       links: %{
-        "GitHub" => "https://github.com/MajAhd/elx_validation"
+        "GitHub" => "https://github.com/MajAhd/elx_validation",
+        "Wiki" => "https://github.com/MajAhd/elx_validation/wiki"
       }
     ]
   end

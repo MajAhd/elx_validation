@@ -2,12 +2,9 @@ defmodule ElxValidation.BindRules do
   alias ElxValidation.{Accepted, Alpha, Boolean, Field, In, Internet, Max, Min, Nullable, Numbers}
   alias ElxValidation.{Confirmation, DateTime, Different, Required, Uuid}
   @moduledoc """
-   call rule functions
-  """
-  @doc """
-     build rules by rule name
-    action :  rules types
-    values : data value for validation - single value
+    Build rules by rule name
+  - not use inside validator
+  - called automatically by validator
   """
   def build(validate, value, rule_field, all_data) do
     rule = String.split(validate, ":")

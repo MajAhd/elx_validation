@@ -1,6 +1,26 @@
 defmodule ElxValidation.Uuid do
   @moduledoc """
-     Run Validate UUID
+  ### uuid
+
+  - The field under validation must be a valid RFC 4122  universally unique identifier (UUID).
+
+  ```
+  data = %{
+      uuid_1: "56b2724e-9074-4dc3-9803-4bb13c92ee0e",
+      uuid_2: "56b2-9074-4dc3-9803-4bb13c9",   ---> not UUID
+  }
+
+  rules = [
+      %{
+        field: "uuid_1",
+        validate: ["uuid"]
+      },
+     %{
+        field: "uuid_2",
+        validate: ["uuid"]
+      },
+    ]
+  ```
   """
   @doc """
     check target is uuid

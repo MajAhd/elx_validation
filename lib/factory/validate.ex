@@ -1,16 +1,25 @@
 defmodule ElxValidation.Validate do
   alias ElxValidation.{BindRules, Exception}
   @moduledoc """
-  Validator Factory
-  Validate all rules
-  Response to Validation result
+  Validator Factory :
+  - Validate all rules
+  - Response to Validation result
+  - not use inside validator
+  - called automatically by validator
   """
   @doc """
-   Explode rules and data
-   check field exist
-   start validation
+   - Explode rules and data
+   - check field exist
+   - start validation
   """
-
+  def validations(data, rules) do
+    Enum.map(
+      rules,
+      fn (rules) ->
+        validate_factory(data, rules)
+      end
+    )
+  end
   def validate_factory(data, rules) do
     #     Explode Rules
     rule_field = rules[:field]

@@ -1,6 +1,8 @@
 defmodule ElxValidation.En do
   @moduledoc """
     Message builder
+  - not use inside validator
+  - called automatically by validator
   """
   @doc """
      call message based on rule name and parameters

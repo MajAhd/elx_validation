@@ -1,17 +1,50 @@
 defmodule ElxValidation do
   alias ElxValidation.Validate
   @moduledoc """
-  Main module to start Validation.
+    > ** Easy and Simple Data validator.**
   - `make` function for start validation
+  ### [ElxValidation Github Wiki Page](https://github.com/MajAhd/elx_validation/wiki)
+
+  ### How To use
+  ```
+  example_data = %{
+    first_name: "Majid"
+  }
+  rules = [
+     %{
+        field: "first_name",
+        as: "first name",
+        validate: ["required", "string", "max:128"].
+      },
+  ]
+  ```
+  ***
+  - field : The Field name that need to validate
+  - as :  its optional and use for response error
+  - validate : list of rules and validations
+
+  ``` ElxValidation.make(example_data ,  rules) ```
+
+  if it has error:
+  ```
+  %{
+  errors: [
+     name: ["Error Message" , "Error Message"]
+  ],
+  failed: true
+  }
+  ```
+  Or if it hasnt error :
+  ```
+  %{
+   errors: [],
+   failed: false
+  }
+  ```
   """
 
-  @doc """
-  Starts ElxValidation.
-     - ElxValidation.make(data , rules)
-  """
   def make(data, rules) do
-
-    validation = validations(data, rules)
+    validation = Validate.validations(data, rules)
     validation = Enum.filter(validation, & &1)
     %{
       errors: if Enum.count(validation) > 0 do
@@ -25,17 +58,5 @@ defmodule ElxValidation do
         false
       end,
     }
-  end
-
-  @doc """
-     send all data to rules to check and validate rules /value
-  """
-  def validations(data, rules) do
-    Enum.map(
-      rules,
-      fn (rules) ->
-        Validate.validate_factory(data, rules)
-      end
-    )
   end
 end
