@@ -10,6 +10,9 @@ defmodule ElxValidation.In do
     v = values
         |> String.split(",")
     Enum.find(v, fn x -> x == target end) != nil
+  rescue
+    _ ->
+      false
   end
   @doc """
      target not in values [a,b ...]
@@ -18,5 +21,8 @@ defmodule ElxValidation.In do
     v = values
         |> String.split(",")
     Enum.find(v, fn x -> x == target end) == nil
+  rescue
+    _ ->
+      false
   end
 end
