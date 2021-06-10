@@ -11,6 +11,9 @@ defmodule ElxValidation.Different do
       is_bitstring(target) -> value != target
       true -> false
     end
+  rescue
+    _ ->
+      false
   end
   @doc """
     target has to equal to value
@@ -21,6 +24,9 @@ defmodule ElxValidation.Different do
       is_bitstring(target) -> value == target
       true -> false
     end
+  rescue
+    _ ->
+      false
   end
   @doc """
     target has to greater than value
@@ -31,6 +37,9 @@ defmodule ElxValidation.Different do
       is_bitstring(target) -> String.length(value) < String.length(target)
       true -> false
     end
+  rescue
+    _ ->
+      false
   end
   @doc """
     target has to equal or greater than value
@@ -41,6 +50,9 @@ defmodule ElxValidation.Different do
       is_bitstring(target) -> String.length(value) <= String.length(target)
       true -> false
     end
+  rescue
+    _ ->
+      false
   end
   @doc """
     target has to less than value
@@ -51,6 +63,9 @@ defmodule ElxValidation.Different do
       is_bitstring(target) -> String.length(value) > String.length(target)
       true -> false
     end
+  rescue
+    _ ->
+      false
   end
   @doc """
     target has to equal or less than value
@@ -61,6 +76,9 @@ defmodule ElxValidation.Different do
       is_bitstring(target) -> String.length(value) >= String.length(target)
       true -> false
     end
+  rescue
+    _ ->
+      false
   end
 
 end
