@@ -7,6 +7,9 @@ defmodule ElxValidation.DateTime do
   """
   def is_date(target) do
     Regex.match?(~r/([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))/, target)
+  rescue
+    _ ->
+      false
   end
 
   @doc """
@@ -18,6 +21,9 @@ defmodule ElxValidation.DateTime do
   """
   def is_time(target) do
     Regex.match?(~r/^([0-1]?[0-9]|2[0-3]):[0-5][0-9]([AaPp][Mm])?$/, target)
+  rescue
+    _ ->
+      false
   end
   @doc """
      check target is DateTime
@@ -25,6 +31,9 @@ defmodule ElxValidation.DateTime do
   """
   def is_date_time(target) do
     Regex.match?(~r/([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])) ([0-1]?[0-9]|2[0-3]):[0-5][0-9]$/, target)
+  rescue
+    _ ->
+      false
   end
   @doc """
      check target is Timezone data
@@ -33,6 +42,9 @@ defmodule ElxValidation.DateTime do
   """
   def is_timezone(target) do
     Regex.match?(~r/[+-][0-9]{2}:[0-9]{2}\b/, target)
+  rescue
+    _ ->
+      false
   end
   @doc """
      check target and value is date and equal
@@ -45,6 +57,9 @@ defmodule ElxValidation.DateTime do
     else
       false
     end
+  rescue
+    _ ->
+      false
   end
   @doc """
      check target and value is date and target after value
@@ -57,6 +72,9 @@ defmodule ElxValidation.DateTime do
     else
       false
     end
+  rescue
+    _ ->
+      false
   end
 
   @doc """
@@ -70,6 +88,9 @@ defmodule ElxValidation.DateTime do
     else
       false
     end
+  rescue
+    _ ->
+      false
   end
 
   @doc """
@@ -83,6 +104,9 @@ defmodule ElxValidation.DateTime do
     else
       false
     end
+  rescue
+    _ ->
+      false
   end
 
   @doc """
@@ -96,5 +120,8 @@ defmodule ElxValidation.DateTime do
     else
       false
     end
+  rescue
+    _ ->
+      false
   end
 end
