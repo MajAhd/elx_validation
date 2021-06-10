@@ -64,26 +64,4 @@ defmodule ElxValidationTest do
              failed: true
            }
   end
-
-
-
-
-  #  Test Nullable
-  test "nullable passed" do
-    data = %{
-      optional_name: "Majid",
-    }
-    rules = [
-      %{
-        field: "optional_name",
-
-        validate: ["nullable", "alpha", "min:3"]
-      },
-    ]
-    assert ElxValidation.make(data, rules) == %{
-             errors: [],
-             failed: false
-           }
-  end
-
 end
