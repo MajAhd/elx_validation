@@ -12,5 +12,8 @@ defmodule ElxValidation.Confirmation do
   """
   def is_confirmed(target, value) do
      target == value
+  rescue
+    _ ->
+      false
   end
 end

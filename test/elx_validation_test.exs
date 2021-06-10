@@ -67,40 +67,7 @@ defmodule ElxValidationTest do
 
 
 
-  #   test confirmation
-  test "confirmed passed" do
-    data = %{
-      password: "123456",
-      password_confirmation: "123456",
-    }
-    rules = [
-      %{
-        field: "password",
-        validate: ["confirmed"]
-      },
 
-    ]
-    assert ElxValidation.make(data, rules) == %{errors: [], failed: false}
-  end
-  test "confirmed failed" do
-    data = %{
-      password: "123456",
-      password_confirmation2: "123456",
-    }
-    rules = [
-      %{
-        field: "password",
-        validate: ["confirmed"]
-      },
-
-    ]
-    assert ElxValidation.make(data, rules) == %{
-             errors: [
-               password: ["The password confirmation does not match."]
-             ],
-             failed: true
-           }
-  end
   #  Test Nullable
   test "nullable passed" do
     data = %{
