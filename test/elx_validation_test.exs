@@ -35,31 +35,48 @@ defmodule ElxValidationTest do
   #  Required test
   test "required passed" do
     data = %{
-      name: "Majid"
+      name: "Majid ahd",
+      email: "example@email.com"
     }
     rules = [
       %{
         field: "name",
         as: "first name",
-        validate: ["required"]
+        validate: ["required", "min:4", "max:10"]
+      },
+      %{
+        field: "email",
+        validate: ["required", "email"]
       }
     ]
     assert ElxValidation.make(data, rules) == %{errors: [], failed: false}
   end
   test "required failed" do
     data = %{
-      name: ""
+      user_name: "",
+      name: "Majid Ahmadi",
+      email: "example@email.com"
     }
     rules = [
       %{
+        field: "user_name",
+        as: "user name",
+        validate: ["required", "alpha", "max:30"]
+      },
+      %{
         field: "name",
         as: "first name",
-        validate: ["required"]
+        validate: ["required", "min:4", "max:10"]
+      },
+      %{
+        field: "email",
+        validate: ["required", "email"]
       }
     ]
     assert ElxValidation.make(data, rules) == %{
              errors: [
-               name: ["The first name field is required."]
+               user_name: ["The user name field is required.", "The user name may only contain letters."],
+               name: ["The first name may not be greater than 10."]
              ],
              failed: true
            }
