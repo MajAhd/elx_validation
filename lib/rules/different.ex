@@ -49,7 +49,9 @@ defmodule ElxValidation.Different do
       },
   ]
   ```
+
   ***
+
   ```
   data = %{
      num_gt: 101,  --> greater than 100

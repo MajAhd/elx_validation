@@ -3,7 +3,9 @@ defmodule ElxValidation do
   @moduledoc """
     > ** Easy and Simple Data validator.**
   - `make` function for start validation
+
   ### [ElxValidation Github Wiki Page](https://github.com/MajAhd/elx_validation/wiki)
+
   ## install
   ```
   mix.exs
@@ -11,7 +13,9 @@ defmodule ElxValidation do
 
   mix deps.get
   ```
+
   ### How To use
+
   ```
   example_data = %{
     first_name: "Majid"
@@ -24,7 +28,9 @@ defmodule ElxValidation do
       },
   ]
   ```
+
   ***
+
   - field : The Field name that need to validate
   - as :  its optional and use for response error
   - validate : list of rules and validations
@@ -32,6 +38,7 @@ defmodule ElxValidation do
   ``` ElxValidation.make(example_data ,  rules) ```
 
   if it has error:
+
   ```
   %{
   errors: [
@@ -40,13 +47,16 @@ defmodule ElxValidation do
   failed: true
   }
   ```
-  Or if it hasnt error :
+
+  Or if it hasn't error :
+
   ```
   %{
    errors: [],
    failed: false
   }
   ```
+
   """
 
   def make(data, rules) do
