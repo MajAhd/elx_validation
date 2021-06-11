@@ -6,6 +6,13 @@ Simple and easy library to Validate data
 
 ⚠️ Library under develop
 
+## install
+```
+mix.exs
+{:elx_validation, "~> 0.1.0"}
+
+mix deps.get
+```
 
 ## Usage
 ***
@@ -28,7 +35,7 @@ rules = [
 ```
 
 ## Documentation
-
+[ElxValidation](https://hexdocs.pm/elx_validation/)
 
 ## Wiki
 ***

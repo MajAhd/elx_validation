@@ -42,7 +42,7 @@ defmodule ElxValidation.Validate do
   end
   @doc """
     check value and rules
-    response to validation -> passes or failed
+    response to validation -> passed or failed
     if failed create errors
   """
   def validate_builder(validates, data, rule_field, rule_as, errors) do

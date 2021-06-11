@@ -21,7 +21,6 @@ defmodule ElxValidation.Different do
      num_diff: 234 --> not be 233
      str_diff: "MQZVD --> not be "ABCD"
   }
-
   rules = [
       %{
         field: "num_diff",
@@ -34,13 +33,11 @@ defmodule ElxValidation.Different do
   ]
   ```
   ***
-
   ```
   data = %{
      num_eq: 100,  --> must be 100
      str_eq: "abcd" --> must be "abcd"
   }
-
   rules = [
       %{
         field: "num_eq",
@@ -60,7 +57,6 @@ defmodule ElxValidation.Different do
      str_gt: "abcd",  --> length of this must greater than length of abc(3 char)
      str_gte: "abcd" --> length of this must greater than or equal length of abc(3 char)
   }
-
   rules = [
      %{
         field: "num_gt",
@@ -88,7 +84,6 @@ defmodule ElxValidation.Different do
    str_lt: "ab",  --> length of this must less than length of abc(3char)
    str_lte: "abcd" --> length of this must less than length of abcde(5 char)
   }
-
   rules = [
      %{
         field: "num_lt",

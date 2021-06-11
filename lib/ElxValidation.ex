@@ -4,7 +4,13 @@ defmodule ElxValidation do
     > ** Easy and Simple Data validator.**
   - `make` function for start validation
   ### [ElxValidation Github Wiki Page](https://github.com/MajAhd/elx_validation/wiki)
+  ## install
+  ```
+  mix.exs
+     {:elx_validation, "~> 0.1.0"}
 
+  mix deps.get
+  ```
   ### How To use
   ```
   example_data = %{
