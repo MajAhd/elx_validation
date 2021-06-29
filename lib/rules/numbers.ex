@@ -2,6 +2,7 @@ defmodule ElxValidation.Numbers do
   @moduledoc """
   ### numeric
   - The field under validation must be numeric.
+
   ```
   data = %{
        number1: 2121,
@@ -21,6 +22,7 @@ defmodule ElxValidation.Numbers do
   ***
   ### digits:value
   - The field under validation must be numeric and must have an exact length of value.
+
   ```
   data = %{
       age1: 12,

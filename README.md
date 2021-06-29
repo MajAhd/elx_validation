@@ -7,6 +7,7 @@ Simple and easy library to Validate data
 ⚠️ Library under develop
 
 ## install
+
 ```
 mix.exs
 {:elx_validation, "~> 0.1.0"}
@@ -14,8 +15,25 @@ mix.exs
 mix deps.get
 ```
 
+## scripts
+
+- mix deps.get
+- mix test
+- mix credo --strict
+- mix local.hex
+- mix hex.user reset_password local
+- mix hex.user
+- mix hex.user register
+- mix hex.user deauth
+- mix hex.config
+- mix hex.build
+- mix hex.publish --replace
+- mix docs
+
 ## Usage
+
 ***
+
 ```
 data = %{
     name: "Majid ahd",
@@ -35,10 +53,13 @@ rules = [
 ```
 
 ## Documentation
+
 [ElxValidation](https://hexdocs.pm/elx_validation/)
 
 ## Wiki
+
 ***
+
 - [Start Validation](https://github.com/MajAhd/elx_validation/wiki)
 - [Required](https://github.com/MajAhd/elx_validation/wiki/Required)
 - [Accepted](https://github.com/MajAhd/elx_validation/wiki/Accepted)
@@ -55,7 +76,8 @@ rules = [
 - [Nullable](https://github.com/MajAhd/elx_validation/wiki/Nullable)
 
 ## Author
+
 ***
- Majid Ahmaditabar
+Majid Ahmaditabar
 
 ElxValidation is released under the [MIT License](https://github.com/MajAhd/elx_validation/blob/main/LICENSE).

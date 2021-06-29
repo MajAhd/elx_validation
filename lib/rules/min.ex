@@ -3,6 +3,7 @@ defmodule ElxValidation.Min do
   ### min:value
   - The field under validation must have a minimum value. Strings and numerics are evaluated in the same fashion as the
   size rule.
+
   ```
   data = %{
       name: "john",

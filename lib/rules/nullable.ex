@@ -2,6 +2,7 @@ defmodule ElxValidation.Nullable do
   @moduledoc """
   ### nullable
   - The field under validation may be null.
+
   ```
   data = %{
       optional_name: "majid",

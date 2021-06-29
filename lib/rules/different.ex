@@ -15,11 +15,12 @@ defmodule ElxValidation.Different do
   ### lte:value
   - The field under validation must be less than or equal to the given field. The two fields must be of the same type.
   Strings and numerics are evaluated using the same conventions as the size rule.
+
   ### examples
   ```
   data = %{
      num_diff: 234 --> not be 233
-     str_diff: "MQZVD --> not be "ABCD"
+     str_diff: "MQZVD" --> not be ABCD
   }
   rules = [
       %{
@@ -32,7 +33,9 @@ defmodule ElxValidation.Different do
       }
   ]
   ```
+
   ***
+
   ```
   data = %{
      num_eq: 100,  --> must be 100

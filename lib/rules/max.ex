@@ -3,6 +3,7 @@ defmodule ElxValidation.Max do
   ### max:value
   - The field under validation must be less than or equal to a maximum value.Strings and numerics are evaluated in the
   same fashion as the size rule.
+
   ```
   data = %{
       name: "john",
