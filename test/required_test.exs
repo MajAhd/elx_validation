@@ -91,4 +91,44 @@ defmodule ElxValidation.RequiredTest do
              failed: true
            }
   end
+  #  required unless
+  test "required_unless passed" do
+    data = %{
+      email: "",
+      phone: "+123456789",
+    }
+    rules = [
+      %{
+        field: "email",
+        validate: ["nullable", "email"]
+      },
+      %{
+        field: "phone",
+        validate: ["required_unless:email"]
+      }
+    ]
+    assert ElxValidation.make(data, rules) == %{errors: [], failed: false}
+  end
+  test "required_unless failed" do
+    data = %{
+      email: "email@example.com",
+      phone: "+123456789",
+    }
+    rules = [
+      %{
+        field: "email",
+        validate: ["nullable", "email"]
+      },
+      %{
+        field: "phone",
+        validate: ["required_unless:email"]
+      }
+    ]
+    assert ElxValidation.make(data, rules) == %{
+             errors: [
+               phone: ["The phone field is required unless email is not exist or empty."]
+             ],
+             failed: true
+           }
+  end
 end

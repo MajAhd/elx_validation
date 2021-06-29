@@ -13,6 +13,7 @@ defmodule ElxValidation.BindRules do
       #      Rules
       action == "required" -> Required.is_require?(value)
       action == "required_if" -> Required.required_if(Enum.at(rule, 1), all_data , value)
+      action == "required_unless" -> Required.required_unless(Enum.at(rule, 1), all_data , value)
       action == "nullable" -> Nullable.is_null?(value)
       action == "string" -> Alpha.is_string(value)
       action == "alpha" -> Alpha.is_alpha(value)

@@ -12,7 +12,7 @@ defmodule ElxValidation.En do
       field: "The #{attribute} is not exist",
       required: "The #{attribute} field is required.",
       required_if: "The #{attribute} field is required when #{value} is exist.",
-      required_unless: "The #{attribute} field is required unless #{value} is not exist .",
+      required_unless: "The #{attribute} field is required unless #{value} is not exist or empty.",
       required_with: 'The #{attribute} field is required when #{value} is present.',
       required_without: 'The #{attribute} field is required when #{value} is not present.',
       accepted: "The #{attribute} must be accepted.",
