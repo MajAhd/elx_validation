@@ -13,6 +13,11 @@ defmodule ElxValidation.Required do
   ### required_unless:anotherfield
      - The field under validation must be present and not empty unless the anotherfield is Not Exist or be null or empty or "" value.
 
+  ### required_with:foo,bar,...
+     - The field under validation must be present and not empty only if any of the other specified fields are present and not empty.
+
+  ### required_without:foo,bar,...
+    -The field under validation must be present and not empty only when any of the other specified fields are empty or not present.
   ***
 
   ```
@@ -22,7 +27,7 @@ defmodule ElxValidation.Required do
        last_name: "doe", --> required if first_name defined and has any value
        email: "email@example.com",
        phone: "+123456789",   --> if email not exist or has null or "" value the phone field is required
-
+       full_name: "required_with:first_name,last_name" -->required if first_name,last_name is exist and not empty
   }
 
   rules = [
@@ -46,6 +51,10 @@ defmodule ElxValidation.Required do
      %{
         field: "phone",
         validate: ["required_unless:email"]
+      },
+      %{
+        field: "full_name",
+        validate: ["required_with:first_name,last_name"]
       }
     ]
   ```
@@ -64,10 +73,10 @@ defmodule ElxValidation.Required do
       if is_require?(check_point) do
         is_require?(value)
       else
-        true
+        false
       end
     else
-      true
+      false
     end
   end
   def required_unless(req_field, all_data, value) do
@@ -83,8 +92,25 @@ defmodule ElxValidation.Required do
     end
   end
 
-  def required_with do
-    true
+  def required_with(req_fields, all_data, value) do
+    fields = String.split(req_fields, ",")
+    check_fields = fn (res) -> Enum.map(
+                                 fields,
+                                 fn (field) ->
+                                   if Field.field_exist?(field, all_data) do
+                                     check_point = Map.fetch!(all_data, String.to_atom(field))
+                                     if is_require?(check_point) do
+                                       res and is_require?(value)
+                                     else
+                                       res and false
+                                     end
+                                   else
+                                     res and false
+                                   end
+                                 end
+                               )
+    end
+    Enum.reduce(check_fields.(true), true, fn x, acc -> x and acc end)
   end
 
   def required_without do

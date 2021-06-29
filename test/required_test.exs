@@ -131,4 +131,50 @@ defmodule ElxValidation.RequiredTest do
              failed: true
            }
   end
+
+  #  Required with tes
+  test "required_with passed" do
+    data = %{
+      first_name: "john",
+      last_name: "doe",
+      full_name: "john doe"
+    }
+    rules = [
+      %{
+        field: "first_name",
+        validate: ["nullable"]
+      },
+      %{
+        field: "last_name",
+        validate: ["nullable"]
+      },
+      %{
+        field: "full_name",
+        validate: ["required_with:first_name,last_name"]
+      }
+    ]
+    assert ElxValidation.make(data, rules) == %{errors: [], failed: false}
+  end
+  test "required_with failed" do
+    data = %{
+      first_name: "",
+      full_name: "john doe"
+    }
+    rules = [
+      %{
+        field: "first_name",
+        validate: ["nullable"]
+      },
+      %{
+        field: "full_name",
+        validate: ["required_with:first_name,last_name"]
+      }
+    ]
+    assert ElxValidation.make(data, rules) == %{
+             errors: [
+               full_name: ['The full_name field is required when first_name,last_name is present.']
+             ],
+             failed: true
+           }
+  end
 end
