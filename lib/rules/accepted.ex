@@ -42,8 +42,6 @@ defmodule ElxValidation.Accepted do
         validate: ["accepted"]
       }
     ]
-
-
   ElxValidation.make(data , rules)
   ```
   - agreement7 returned error because accepted validation must be one of the : true, "true", 1 , "1" , "on" , "yes"

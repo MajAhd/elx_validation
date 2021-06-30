@@ -1,7 +1,6 @@
 defmodule ElxValidation.Alpha do
   @moduledoc """
   ### string
-
   - The field under validation must be a string. If you would like to allow the field to also be null, you should assign
   the nullable rule to the field.
   ```
@@ -20,11 +19,8 @@ defmodule ElxValidation.Alpha do
       }
     ]
   ```
-
   ***
-
   ### alpha
-
   - The field under validation must be entirely alphabetic characters.
   ```
   data = %{
@@ -62,7 +58,6 @@ defmodule ElxValidation.Alpha do
       }
   ]
   ```
-
   ### end_with:foo
 
   - The field under validation must end with the given values

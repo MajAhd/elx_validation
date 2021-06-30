@@ -1,8 +1,8 @@
 defmodule ElxValidation.In do
   @moduledoc """
-
   ### in:foo,bar,...
   - The field under validation must be included in the given list of values.
+
   ### not_in:foo,bar,...
   - The field under validation must not be included in the given list of values.
   ```

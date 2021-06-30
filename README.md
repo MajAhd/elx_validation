@@ -14,22 +14,6 @@ mix.exs
 
 mix deps.get
 ```
-
-## scripts
-
-- mix deps.get
-- mix test
-- mix credo --strict
-- mix local.hex
-- mix hex.user reset_password local
-- mix hex.user
-- mix hex.user register
-- mix hex.user deauth
-- mix hex.config
-- mix hex.build
-- mix hex.publish --replace
-- mix docs
-
 ## Usage
 
 ***

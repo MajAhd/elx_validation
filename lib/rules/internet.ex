@@ -2,12 +2,16 @@ defmodule ElxValidation.Internet do
   @moduledoc """
   ### email
   - The field under validation must be formatted as an email address.
+
   ### url
   - The field under validation must be a valid URL.
+
   ### ip
   - The field under validation must be an IP address.
+
   ### ipv4
   - The field under validation must be an IPv4 address.
+
   ### ipv6
   - The field under validation must be an IPv6 address.
   ***
