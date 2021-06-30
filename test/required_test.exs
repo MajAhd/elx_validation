@@ -95,7 +95,7 @@ defmodule ElxValidation.RequiredTest do
   test "required_unless passed" do
     data = %{
       email: "",
-      phone: "+123456789",
+      phone: "+1234567",
     }
     rules = [
       %{
@@ -111,8 +111,8 @@ defmodule ElxValidation.RequiredTest do
   end
   test "required_unless failed" do
     data = %{
-      email: "email@example.com",
-      phone: "+123456789",
+      email: "",
+      phone: nil,
     }
     rules = [
       %{
@@ -157,12 +157,17 @@ defmodule ElxValidation.RequiredTest do
   end
   test "required_with failed" do
     data = %{
-      first_name: "",
-      full_name: "john doe"
+      first_name: "john",
+      last_name: "doe",
+      full_name: ""
     }
     rules = [
       %{
         field: "first_name",
+        validate: ["nullable"]
+      },
+      %{
+        field: "last_name",
         validate: ["nullable"]
       },
       %{
@@ -203,9 +208,9 @@ defmodule ElxValidation.RequiredTest do
   end
   test "required_without failed" do
     data = %{
-      first_name: "john",
-      last_name: "doe",
-      full_name: "john doe"
+      first_name: "",
+      last_name: "",
+      full_name: nil
     }
     rules = [
       %{

@@ -138,17 +138,17 @@ defmodule ElxValidation.Required do
       if is_require?(check_point) do
         is_require?(value)
       else
-        false
+        true
       end
     else
-      false
+      true
     end
   end
   def required_unless(req_field, all_data, value) do
     if Field.field_exist?(req_field, all_data) do
       check_point = Map.fetch!(all_data, String.to_atom(req_field))
       if is_require?(check_point) do
-        false
+        true
       else
         is_require?(value)
       end
@@ -167,10 +167,10 @@ defmodule ElxValidation.Required do
                                   if is_require?(check_point) do
                                     is_require?(value)
                                   else
-                                    false
+                                    true
                                   end
                                 else
-                                  false
+                                  true
                                 end
                               end
                             )
@@ -186,7 +186,7 @@ defmodule ElxValidation.Required do
                              if Field.field_exist?(field, all_data) do
                                check_point = Map.fetch!(all_data, String.to_atom(field))
                                if is_require?(check_point) do
-                                 false
+                                 true
                                else
                                  is_require?(value)
                                end
