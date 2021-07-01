@@ -13,7 +13,7 @@ defmodule ElxValidation.Required do
   }
   rules = [
       %{
-        field: "first_name",
+        field: "name",
         validate: ["required"]
       }
     ]
@@ -130,7 +130,7 @@ defmodule ElxValidation.Required do
   ```
   ***
   ### important notice
-    - if you use required if , unless ,with and without, validator will validates all rules that you set
+     - if you use required if , unless ,with and without, validator will validates all rules that you set
 
   ```
     data = %{

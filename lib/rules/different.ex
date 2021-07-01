@@ -2,16 +2,21 @@ defmodule ElxValidation.Different do
   @moduledoc """
   ### different:value
   - The field under validation must have a different value than field.
+
   ### equal:value
   - The field under validation must be equal to the given field. The two fields must be of the same type.
   Strings and numerics are evaluated using the same conventions as the size rule.
+
   ### gt:value
   - The field under validation must be greater than the given field. The two fields must be of the same type. Strings and numerics are evaluated using the same conventions as the size rule.
+
   ### gte:value
   - The field under validation must be greater than or equal to the given field. The two fields must be of the same type.
   Strings and numerics are evaluated using the same conventions as the size rule.
+
   ### lt:value
   - The field under validation must be less than the given field. The two fields must be of the same type. Strings and numerics are evaluated using the same conventions as the size rule.
+
   ### lte:value
   - The field under validation must be less than or equal to the given field. The two fields must be of the same type.
   Strings and numerics are evaluated using the same conventions as the size rule.

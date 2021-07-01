@@ -29,8 +29,8 @@ defmodule ElxValidation do
   #### field : The Field name that need to validate
   #### as :  its optional and use for response error
   #### validate : list of rules and validations
-  #### Run Validation : ` ElxValidation.make(example_data ,  rules) `
-  ### if has Error
+  ### Run Validation : ` ElxValidation.make(example_data ,  rules) `
+  ### Validator has Error
   ```
   %{
       errors: [
@@ -39,7 +39,7 @@ defmodule ElxValidation do
       failed: true
   }
   ```
-  ### if  hasn't Error :
+  ### Validator without Error:
   ```
   %{
      errors: [],
