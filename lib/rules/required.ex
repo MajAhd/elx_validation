@@ -130,7 +130,7 @@ defmodule ElxValidation.Required do
   ```
   ***
   ### important notice
-  if you use required if , unless ,with and without, validator will validates all rules that you set
+    - if you use required if , unless ,with and without, validator will validates all rules that you set
 
   ```
     data = %{
@@ -149,14 +149,10 @@ defmodule ElxValidation.Required do
       }
     ]
   ```
-  the logic is :
-
-  if first_name has value then last_name is required
-
-  if first_name hasn't value then last_name is not required
-
-  in case first_name does not exist or null last_name is not necessary but alpha and min and max validations still works.
-
+  ### the logic is :
+  #### if first_name has value then last_name is required
+  #### if first_name hasn't value then last_name is not required
+  #### in case first_name does not exist or null last_name is not necessary but alpha and min and max validations still works.
   """
   def is_require?(""), do: false
   def is_require?(nil), do: false

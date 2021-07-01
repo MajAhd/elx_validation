@@ -1,7 +1,15 @@
 # Changelog
 ***
+## V0.1.2
+### Issues Fixed
+issues fixed :
+- Required if
+- Required unless
+
+Completed Documentation
+***
 ## V0.1.1
-### Required
+### Extra Required validations
   - Required if
   - Required unless
   - Required with

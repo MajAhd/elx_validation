@@ -105,7 +105,7 @@ defmodule ElxValidation.RequiredTest do
       },
       %{
         field: "phone",
-        validate: ["required_unless:email", "nullable", "min:5"]
+        validate: ["required_unless:email", "min:5"]
       }
     ]
     assert ElxValidation.make(data, rules) == %{errors: [], failed: false}
