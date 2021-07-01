@@ -7,6 +7,10 @@ issues fixed :
 - Required unless
 
 Completed Documentation
+- api-reference
+- required 
+- different
+
 ***
 ## V0.1.1
 ### Extra Required validations
