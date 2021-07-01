@@ -54,7 +54,7 @@ defmodule ElxValidation.RequiredTest do
   #  Required id tes
   test "required_if passed" do
     data = %{
-      first_name: "john",
+      first_name: "John",
       last_name: "doe"
     }
     rules = [
@@ -84,6 +84,7 @@ defmodule ElxValidation.RequiredTest do
         validate: ["required_if:first_name"]
       }
     ]
+
     assert ElxValidation.make(data, rules) == %{
              errors: [
                last_name: ["The last_name field is required when first_name is exist."]
@@ -95,7 +96,7 @@ defmodule ElxValidation.RequiredTest do
   test "required_unless passed" do
     data = %{
       email: "",
-      phone: "+1234567",
+      phone: "+1222323",
     }
     rules = [
       %{
@@ -104,21 +105,16 @@ defmodule ElxValidation.RequiredTest do
       },
       %{
         field: "phone",
-        validate: ["required_unless:email"]
+        validate: ["required_unless:email", "nullable", "min:5"]
       }
     ]
     assert ElxValidation.make(data, rules) == %{errors: [], failed: false}
   end
   test "required_unless failed" do
     data = %{
-      email: "",
       phone: nil,
     }
     rules = [
-      %{
-        field: "email",
-        validate: ["nullable", "email"]
-      },
       %{
         field: "phone",
         validate: ["required_unless:email"]
@@ -135,9 +131,9 @@ defmodule ElxValidation.RequiredTest do
   #  Required with test
   test "required_with passed" do
     data = %{
-      first_name: "john",
-      last_name: "doe",
-      full_name: "john doe"
+      first_name: "John",
+      last_name: "Doe",
+      full_name: "John Doe"
     }
     rules = [
       %{
@@ -150,7 +146,7 @@ defmodule ElxValidation.RequiredTest do
       },
       %{
         field: "full_name",
-        validate: ["required_with:first_name,last_name"]
+        validate: ["required_with:first_name,last_name", "alpha"]
       }
     ]
     assert ElxValidation.make(data, rules) == %{errors: [], failed: false}
