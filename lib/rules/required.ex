@@ -84,7 +84,7 @@ defmodule ElxValidation.Required do
   data = %{
        first_name: "John",
        last_name: "doe", --> required if first_name defined and has any value
-       full_name: "required_with:first_name,last_name" -->required if first_name,last_name is exist or not empty
+       full_name: "John Doe" -->required if first_name,last_name is exist or not empty
   }
   rules = [
       %{
@@ -110,7 +110,7 @@ defmodule ElxValidation.Required do
   data = %{
        first_name: "",
        last_name: "",
-       full_name: "John Dow" -->required if first_name,last_name is/are not exist or empty
+       full_name: "John Doe" -->required if first_name,last_name is/are not exist or empty
   }
 
   rules = [
