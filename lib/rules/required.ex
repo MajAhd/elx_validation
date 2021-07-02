@@ -108,19 +108,19 @@ defmodule ElxValidation.Required do
 
   ```
   data = %{
-       first_name: "John",
-       last_name: "doe", --> required if first_name defined and has any value
-       full_name: "required_without:first_name,last_name" -->required if first_name,last_name is/are not exist or empty
+       first_name: "",
+       last_name: "",
+       full_name: "John Dow" -->required if first_name,last_name is/are not exist or empty
   }
 
   rules = [
       %{
         field: "first_name",
-        validate: ["required"]
+        validate: ["nullable" , "alpha"]
       },
      %{
         field: "last_name",
-        validate: ["required_if:first_name"]
+        validate: ["nullable" , "alpha"]
       },
       %{
         field: "full_name",
