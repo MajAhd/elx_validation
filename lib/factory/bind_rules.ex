@@ -1,6 +1,6 @@
 defmodule ElxValidation.BindRules do
   alias ElxValidation.{Accepted, Alpha, Boolean, Field, In, Internet, Max, Min, Nullable, Numbers}
-  alias ElxValidation.{Confirmation, DateTime, Different, Required, Uuid}
+  alias ElxValidation.{Confirmation, DateTime, Different, Required, Storage, Uuid}
   @moduledoc """
     Build rules by rule name
   - not use inside validator
@@ -12,10 +12,10 @@ defmodule ElxValidation.BindRules do
     cond do
       #      Rules
       action == "required" -> Required.is_require?(value)
-      action == "required_if" -> Required.required_if(Enum.at(rule, 1), all_data , value)
-      action == "required_unless" -> Required.required_unless(Enum.at(rule, 1), all_data , value)
-      action == "required_with" -> Required.required_with(Enum.at(rule, 1), all_data , value)
-      action == "required_without" -> Required.required_without(Enum.at(rule, 1), all_data , value)
+      action == "required_if" -> Required.required_if(Enum.at(rule, 1), all_data, value)
+      action == "required_unless" -> Required.required_unless(Enum.at(rule, 1), all_data, value)
+      action == "required_with" -> Required.required_with(Enum.at(rule, 1), all_data, value)
+      action == "required_without" -> Required.required_without(Enum.at(rule, 1), all_data, value)
       action == "nullable" -> Nullable.is_null?(value)
       action == "string" -> Alpha.is_string(value)
       action == "alpha" -> Alpha.is_alpha(value)
@@ -61,6 +61,12 @@ defmodule ElxValidation.BindRules do
           false
         end
       action == "nullable" -> Nullable.is_null?(value)
+      # File
+      action == "file" -> Storage.is_file(value)
+      action == "mimes" -> Storage.mimes(value, Enum.at(rule, 1))
+      action == "mime_types" -> Storage.mime_types(value, Enum.at(rule, 1))
+      action == "max_size" -> Storage.max_size(value, Enum.at(rule, 1))
+      action == "min_size" -> Storage.min_size(value, Enum.at(rule, 1))
       true -> false
     end
   end

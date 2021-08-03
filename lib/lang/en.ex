@@ -51,6 +51,11 @@ defmodule ElxValidation.En do
       lte: "The #{attribute} must be less or equal to #{value}.",
       confirmed: "The #{attribute} confirmation does not match.",
       nullable: "The #{attribute} can be a null.",
+      file: "The #{attribute} must be a file.",
+      mimes: "The #{attribute} must be a file of type: #{value}.",
+      mime_types: "The #{attribute} must be a file of type: #{value}.",
+      max_size: "The #{attribute} may not be greater than #{value} kilobytes.",
+      min_size: "The #{attribute}  must be at least #{value} kilobytes.",
     ]
   end
 
