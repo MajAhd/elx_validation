@@ -1,10 +1,16 @@
-# elx_validation
+<div align="center">
 
+# Elx Validation Pure Elixir Data Validator
+
+![Image](./assets/ElxValidation.png?raw=true "Elixir Validation")
+
+</div>
+
+
+***
 [![Build Status](https://www.travis-ci.com/MajAhd/elx_validation.svg?branch=main)](https://www.travis-ci.com/MajAhd/elx_validation)
 
-Simple and easy library to Validate data
-
-⚠️ Library under develop
+Simple and easy library to Validate data in Elixir
 
 ## install
 
@@ -14,6 +20,7 @@ mix.exs
 
 mix deps.get
 ```
+
 ## Usage
 
 ***
