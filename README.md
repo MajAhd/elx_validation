@@ -16,7 +16,7 @@ Simple and easy library to Validate data in Elixir
 
 ```
 mix.exs
-{:elx_validation, "~> 0.1.2"}
+{:elx_validation, "~> 0.1.3"}
 
 mix deps.get
 ```
@@ -65,6 +65,7 @@ rules = [
 - [Different](https://github.com/MajAhd/elx_validation/wiki/Greater-that-&-Less-Than-&-equal-&-Different-Field)
 - [Confirmation](https://github.com/MajAhd/elx_validation/wiki/Confirmation)
 - [Nullable](https://github.com/MajAhd/elx_validation/wiki/Nullable)
+- [File](https://github.com/MajAhd/elx_validation/wiki/File)
 
 ## Author
 

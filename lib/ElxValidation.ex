@@ -10,7 +10,7 @@ defmodule ElxValidation do
   ### install
   ```
   mix.exs
-     {:elx_validation, "~> 0.1.0"}
+     {:elx_validation, "~> 0.1.2"}
   mix deps.get
   ```
   ***

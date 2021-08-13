@@ -1,9 +1,10 @@
 defmodule ElxValidation.Storage do
   @moduledoc """
   ### File
-  the field under validation mus be a file and at leas 1 kilobyte size
+  - the field under validation must be a file and at leas 1 kilobyte size
   - empty value return error unless field is under nullable validation
-    ```
+
+  ```
     data = %{
       logo: "LOGO FILE",
     }
@@ -16,11 +17,12 @@ defmodule ElxValidation.Storage do
    ```
 
    - file : data must be a file and at least 1 kb size
-   - min_size: minimum size of file
-   - max_size: maximum size of file
+   - min_size: minimum size (Kb) of file
+   - max_size: maximum size (Kb) of file
    - mimes: list of accepted mimes
    - mime_types: list of accepted mime_types
   """
+
   def is_file(target) do
     if File.exists?(target.path) do
       true
@@ -37,8 +39,8 @@ defmodule ElxValidation.Storage do
       %{size: size} = File.stat!(target.path)
 
       cond do
-        size <= String.to_integer(value) * 1024 -> true
-        size > String.to_integer(value) * 1024 -> false
+        div(size, 1024) <= String.to_integer(value) -> true
+        div(size, 1024) > String.to_integer(value) -> false
         true -> false
       end
     else
@@ -54,8 +56,8 @@ defmodule ElxValidation.Storage do
       %{size: size} = File.stat!(target.path)
 
       cond do
-        size >= String.to_integer(value) * 1024 -> true
-        size < String.to_integer(value) * 1024 -> false
+        div(size, 1024) >= String.to_integer(value) -> true
+        div(size, 1024) < String.to_integer(value) -> false
         true -> false
       end
     else
@@ -68,7 +70,7 @@ defmodule ElxValidation.Storage do
 
   def mimes(target, value) do
     if is_file(target) do
-      extension = Path.extname(target.path)
+      extension = Path.extname(target.filename)
 
       v =
         value

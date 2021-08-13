@@ -4,13 +4,13 @@ defmodule ElxValidation.MixProject do
   def project do
     [
       app: :elx_validation,
-      version: "0.1.2",
+      version: "0.1.3",
       elixir: "~> 1.11",
-      build_embedded: Mix.env == :prod,
+      build_embedded: Mix.env() == :prod,
       start_permanent: Mix.env() == :prod,
       description: description(),
       package: package(),
-      deps: deps(),
+      deps: deps()
     ]
   end
 
@@ -37,7 +37,7 @@ defmodule ElxValidation.MixProject do
 
   defp package do
     [
-      files: ["lib", "mix.exs", "README*", "LICENSE*" ,"CHANGELOG*"],
+      files: ["lib", "mix.exs", "README*", "LICENSE*", "CHANGELOG*"],
       maintainers: ["Majid Ahmaditabar"],
       licenses: ["MIT"],
       links: %{
