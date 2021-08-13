@@ -14,7 +14,7 @@ Simple and easy library to Validate data in Elixir
 
 ## install
 
-```
+```elixir
 mix.exs
 {:elx_validation, "~> 0.1.3"}
 
@@ -25,7 +25,7 @@ mix deps.get
 
 ---
 
-```
+```elixir
 data = %{
     name: "Majid ahd",
     email: "example@email.com"
