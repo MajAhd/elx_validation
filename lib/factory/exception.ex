@@ -1,5 +1,6 @@
 defmodule ElxValidation.Exception do
   alias ElxValidation.En
+
   @moduledoc """
    Control Exceptions and errors
   - not use inside validator
@@ -19,6 +20,7 @@ defmodule ElxValidation.Exception do
     errors = %{}
     Map.put(errors, String.to_atom(field), [])
   end
+
   @doc """
   create final error response
   """
@@ -32,22 +34,34 @@ defmodule ElxValidation.Exception do
       end
     )
   end
+
   @doc """
      push error for each rule on value
-     in case user not defined `as`
+     in case user defined `as` null or coustome name
   """
-  def push_error?(errors, field, type, value, as \\ nil) when as == nil do
+  def push_error?(errors, field, type, value, as) when as == nil do
     message = En.message(field, value)
-    errors = Map.put(errors, String.to_atom(field), errors[String.to_atom(field)] ++ [message[String.to_atom(type)]])
+
+    errors =
+      Map.put(
+        errors,
+        String.to_atom(field),
+        errors[String.to_atom(field)] ++ [message[String.to_atom(type)]]
+      )
+
     errors
   end
-  @doc """
-     push error for each rule on value
-     in case user  defined `as`
-  """
-  def push_error?(errors, field, type, value, as) when as != nil do
+
+  def push_error?(errors, field, type, value, as) when as !== nil do
     message = En.message(as, value)
-    errors = Map.put(errors, String.to_atom(field), errors[String.to_atom(field)] ++ [message[String.to_atom(type)]])
+
+    errors =
+      Map.put(
+        errors,
+        String.to_atom(field),
+        errors[String.to_atom(field)] ++ [message[String.to_atom(type)]]
+      )
+
     errors
   end
 end

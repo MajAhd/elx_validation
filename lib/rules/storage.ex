@@ -15,7 +15,7 @@ defmodule ElxValidation.Storage do
     ]
    ```
 
-   - file : data must be a file
+   - file : data must be a file and at least 1 kb size
    - min_size: minimum size of file
    - max_size: maximum size of file
    - mimes: list of accepted mimes
@@ -33,8 +33,9 @@ defmodule ElxValidation.Storage do
   end
 
   def max_size(target, value) do
-    if  is_file(target) do
-      %{size: size} = File.stat! target.path
+    if is_file(target) do
+      %{size: size} = File.stat!(target.path)
+
       cond do
         size <= String.to_integer(value) * 1024 -> true
         size > String.to_integer(value) * 1024 -> false
@@ -50,7 +51,8 @@ defmodule ElxValidation.Storage do
 
   def min_size(target, value) do
     if is_file(target) do
-      %{size: size} = File.stat! target.path
+      %{size: size} = File.stat!(target.path)
+
       cond do
         size >= String.to_integer(value) * 1024 -> true
         size < String.to_integer(value) * 1024 -> false
@@ -67,8 +69,11 @@ defmodule ElxValidation.Storage do
   def mimes(target, value) do
     if is_file(target) do
       extension = Path.extname(target.path)
-      v = value
-          |> String.split(",")
+
+      v =
+        value
+        |> String.split(",")
+
       Enum.find(v, fn x -> "." <> x == extension end) != nil
     else
       false
@@ -80,8 +85,10 @@ defmodule ElxValidation.Storage do
 
   def mime_types(target, value) do
     if is_file(target) do
-      v = value
-          |> String.split(",")
+      v =
+        value
+        |> String.split(",")
+
       Enum.find(v, fn x -> x == target.content_type end) != nil
     else
       false

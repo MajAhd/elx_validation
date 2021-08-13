@@ -13,6 +13,8 @@ erl_crash.dump
 
 /.idea
 .idea
+/.vscode
+.vscode
 
 .DS_Store
 .env.local

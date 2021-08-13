@@ -49,6 +49,7 @@ defmodule ElxValidation.Numbers do
     _ ->
       false
   end
+
   @doc """
     target must be a number : integer
     target   12345 -> its 5 digit
@@ -59,7 +60,6 @@ defmodule ElxValidation.Numbers do
   def digits(target, value) do
     cond do
       !is_integer(target) -> false
-      !is_integer(String.to_integer(value)) -> false
       Enum.count(Integer.digits(target)) == String.to_integer(value) -> true
       true -> false
     end

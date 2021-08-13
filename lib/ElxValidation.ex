@@ -1,5 +1,6 @@
 defmodule ElxValidation do
   alias ElxValidation.Validate
+
   @moduledoc """
   ### Elx Validation
     - Easy and Simple Data validator.
@@ -47,21 +48,23 @@ defmodule ElxValidation do
   }
   ```
   """
-
   def make(data, rules) do
     validation = Validate.validations(data, rules)
     validation = Enum.filter(validation, & &1)
+
     %{
-      errors: if Enum.count(validation) > 0 do
-        validation
-      else
-        []
-      end,
-      failed: if Enum.count(validation) > 0 do
-        true
-      else
-        false
-      end,
+      errors:
+        if Enum.count(validation) > 0 do
+          validation
+        else
+          []
+        end,
+      failed:
+        if Enum.count(validation) > 0 do
+          true
+        else
+          false
+        end
     }
   end
 end

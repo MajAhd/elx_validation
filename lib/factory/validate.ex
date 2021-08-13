@@ -1,5 +1,6 @@
 defmodule ElxValidation.Validate do
   alias ElxValidation.{BindRules, Exception}
+
   @moduledoc """
   Validator Factory :
   - Validate all rules
@@ -15,11 +16,12 @@ defmodule ElxValidation.Validate do
   def validations(data, rules) do
     Enum.map(
       rules,
-      fn (rules) ->
+      fn rules ->
         validate_factory(data, rules)
       end
     )
   end
+
   def validate_factory(data, rules) do
     #     Explode Rules
     rule_field = rules[:field]
@@ -27,9 +29,11 @@ defmodule ElxValidation.Validate do
     validates = rules[:validate]
     errors = Exception.build_exception(rule_field)
     is_data_exist = Map.has_key?(data, String.to_atom(rule_field))
+
     if is_data_exist do
       builder = validate_builder(validates, data, rule_field, rule_as, errors)
       builder = Enum.filter(builder, & &1)
+
       if Enum.count(builder) > 0 do
         err = Exception.response(builder, rule_field)
         List.to_tuple([String.to_atom(rule_field), err])
@@ -40,6 +44,7 @@ defmodule ElxValidation.Validate do
       List.to_tuple([String.to_atom(rule_field), err])
     end
   end
+
   @doc """
     check value and rules
     response to validation -> passed or failed
@@ -56,15 +61,32 @@ defmodule ElxValidation.Validate do
           rule = String.split(validate, ":")
           rule_type = Enum.count(rule)
           builder = BindRules.build(validate, data_value, rule_field, data)
+
           cond do
             rule_type === 1 ->
-              exception_builder(builder, errors, rule_field, Enum.at(rule, 0), data_value, rule_as)
+              exception_builder(
+                builder,
+                errors,
+                rule_field,
+                Enum.at(rule, 0),
+                data_value,
+                rule_as
+              )
+
             rule_type === 2 ->
-              exception_builder(builder, errors, rule_field, Enum.at(rule, 0), Enum.at(rule, 1), rule_as)
+              exception_builder(
+                builder,
+                errors,
+                rule_field,
+                Enum.at(rule, 0),
+                Enum.at(rule, 1),
+                rule_as
+              )
           end
         end
       )
     end
+
     # Check the pre conditions of validation
     cond do
       has_nullable != nil ->
@@ -73,7 +95,9 @@ defmodule ElxValidation.Validate do
         else
           initial_validate.()
         end
-      has_nullable == nil -> initial_validate.()
+
+      has_nullable == nil ->
+        initial_validate.()
     end
   end
 

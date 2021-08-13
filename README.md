@@ -6,8 +6,8 @@
 
 </div>
 
+---
 
-***
 [![Build Status](https://www.travis-ci.com/MajAhd/elx_validation.svg?branch=main)](https://www.travis-ci.com/MajAhd/elx_validation)
 
 Simple and easy library to Validate data in Elixir
@@ -16,14 +16,14 @@ Simple and easy library to Validate data in Elixir
 
 ```
 mix.exs
-{:elx_validation, "~> 0.1.0"}
+{:elx_validation, "~> 0.1.2"}
 
 mix deps.get
 ```
 
 ## Usage
 
-***
+---
 
 ```
 data = %{
@@ -49,7 +49,7 @@ rules = [
 
 ## Wiki
 
-***
+---
 
 - [Start Validation](https://github.com/MajAhd/elx_validation/wiki)
 - [Required](https://github.com/MajAhd/elx_validation/wiki/Required)
@@ -68,7 +68,8 @@ rules = [
 
 ## Author
 
-***
+---
+
 Majid Ahmaditabar
 
 ElxValidation is released under the [MIT License](https://github.com/MajAhd/elx_validation/blob/main/LICENSE).
