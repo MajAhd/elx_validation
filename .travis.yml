@@ -10,8 +10,8 @@ jobs:
       name: "Credo"
       stage: lint
       elixir: '1.13'
-      otp_release: '24.0.0'
+      otp_release: '23.0.4'
     - elixir: '1.13'
-      otp_release: '24.0.0'
+      otp_release: '23.0.4'
       script: mix test
       stage: test
