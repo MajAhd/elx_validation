@@ -8,9 +8,16 @@
 
 ---
 
-[![Build Status](https://www.travis-ci.com/MajAhd/elx_validation.svg?branch=main)](https://www.travis-ci.com/MajAhd/elx_validation)
-
 Simple and easy library to Validate data in Elixir
+
+
+
+[![Build Status](https://www.travis-ci.com/MajAhd/elx_validation.svg?branch=main)](https://www.travis-ci.com/MajAhd/elx_validation)
+![Hex.pm](https://img.shields.io/hexpm/v/elx_validation)
+![Hex.pm](https://img.shields.io/hexpm/l/elx_validation)
+![Hex.pm](https://img.shields.io/hexpm/dt/elx_validation)
+
+---
 
 ## install
 
